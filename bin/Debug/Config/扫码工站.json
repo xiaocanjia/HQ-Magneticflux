@@ -1,0 +1,11 @@
+{
+  "$type": "JSystem.Station.StationInfo, JSystem",
+  "AxesInfo": {
+    "$type": "JSystem.Station.StationAxis[], JSystem",
+    "$values": []
+  },
+  "PointsName": {
+    "$type": "System.String[], mscorlib",
+    "$values": []
+  }
+}
