@@ -66,7 +66,7 @@ namespace JSystem.Station
 
         public uint HomeDir = 0;
 
-        public double HomeOffset = 1.0;
+        public double HomeOffset = 0.0;
 
         public double HomeVelH = 20.0;
 
