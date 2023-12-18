@@ -518,6 +518,8 @@ xcopy /y $(SolutionDir)Packages\BoardLib\* $(SolutionDir)bin\Debug
 xcopy /y $(SolutionDir)Packages\UI\* $(SolutionDir)bin\Debug
 xcopy /y $(SolutionDir)Packages\Password\* $(SolutionDir)bin\Debug
 xcopy /y $(SolutionDir)Packages\System\* $(SolutionDir)bin\Debug
-xcopy /y $(MSBuildProjectDirectory)\Logo.ico $(SolutionDir)bin\Debug</PreBuildEvent>
+xcopy /y $(MSBuildProjectDirectory)\Logo.ico $(SolutionDir)bin\Debug
+xcopy /y $(SolutionDir)Packages\JLib\* $(SolutionDir)bin\Debug
+xcopy /y $(SolutionDir)Packages\Modbus\* $(SolutionDir)bin\Debug</PreBuildEvent>
   </PropertyGroup>
 </Project>
