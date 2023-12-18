@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace JSystem.Device
@@ -7,6 +8,9 @@ namespace JSystem.Device
     public class WeightSensor : SerialComm
     {
         private float[] _weightList = new float[2];
+
+        [JsonIgnore]
+        public Action<float[]> OnUpdateDisp;
 
         public WeightSensor()
         {
@@ -36,7 +40,7 @@ namespace JSystem.Device
                         _weightList[0] = BitConverter.ToSingle(new byte[] { buffer[i + 6],  buffer[i + 5], buffer[i + 4], buffer[i + 3] }, 0);
                         _weightList[1] = BitConverter.ToSingle(new byte[] { buffer[i + 10], buffer[i + 9], buffer[i + 8], buffer[i + 7] }, 0);
                         i += 12;
-                        ((WeightSensorView)View).UpdateWeight();
+                        OnUpdateDisp?.Invoke(_weightList);
                     }
                 }
             }

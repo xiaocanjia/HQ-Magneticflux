@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace JSystem.Device
 {
@@ -29,6 +30,7 @@ namespace JSystem.Device
 
         private bool _isOn = true;
 
+        [JsonIgnore]
         public Action<double> OnUpdateDisp;
         
         public MagneticFlux()
