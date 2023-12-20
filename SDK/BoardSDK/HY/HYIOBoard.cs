@@ -61,7 +61,7 @@ namespace BoardSDK
 
         private void RefreshIO()
         {
-            while (true)
+            while (_isConnected)
             {
                 Thread.Sleep(10);
                 for (int i = 0; i < _axexCount; i++)

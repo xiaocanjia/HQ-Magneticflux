@@ -128,7 +128,7 @@ namespace JSystem
         
         public void UnInit()
         {
-            IOMgr.Stop();
+            IOMgr.UnInit();
             DeviceMgr.UnInit();
             StationMgr?.End();
             Stop(true);
