@@ -8,20 +8,19 @@ namespace JSystem.Device
         {
             InitializeComponent();
             _device = device;
+            device.OnUpdateDisp += UpdateWeight;
         }
 
-        public void UpdateWeight()
+        public void UpdateWeight(float[] value)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action(() => { UpdateWeight(); }));
+                BeginInvoke(new Action(() => { UpdateWeight(value); }));
             }
             else
             {
-                WeightSensor device = (WeightSensor)_device;
-                float[] weightList = device.ReadWeight();
-                Lbl_Weight1.Text = weightList[0].ToString();
-                Lbl_Weight2.Text = weightList[1].ToString();
+                Lbl_Weight1.Text = value[0].ToString();
+                Lbl_Weight2.Text = value[1].ToString();
             }
         }
     }

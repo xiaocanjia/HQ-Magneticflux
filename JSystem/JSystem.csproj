@@ -193,6 +193,13 @@
     <Compile Include="Device\ProgramPower\ProgramPowerView.Designer.cs">
       <DependentUpon>ProgramPowerView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Device\SerialComm\MagneticFlux\MagneticFlux.cs" />
+    <Compile Include="Device\SerialComm\MagneticFlux\MagneticFluxView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Device\SerialComm\MagneticFlux\MagneticFluxView.Designer.cs">
+      <DependentUpon>MagneticFluxView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Device\SerialComm\ScannigGun\ScanningGun.cs" />
     <Compile Include="Device\SerialComm\ScannigGun\ScanningGunView.cs">
       <SubType>UserControl</SubType>
@@ -410,6 +417,9 @@
     <EmbeddedResource Include="Device\ProgramPower\ProgramPowerView.resx">
       <DependentUpon>ProgramPowerView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Device\SerialComm\MagneticFlux\MagneticFluxView.resx">
+      <DependentUpon>MagneticFluxView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Device\SerialComm\ScannigGun\ScanningGunView.resx">
       <DependentUpon>ScanningGunView.cs</DependentUpon>
     </EmbeddedResource>
@@ -518,6 +528,8 @@ xcopy /y $(SolutionDir)Packages\BoardLib\* $(SolutionDir)bin\Debug
 xcopy /y $(SolutionDir)Packages\UI\* $(SolutionDir)bin\Debug
 xcopy /y $(SolutionDir)Packages\Password\* $(SolutionDir)bin\Debug
 xcopy /y $(SolutionDir)Packages\System\* $(SolutionDir)bin\Debug
-xcopy /y $(MSBuildProjectDirectory)\Logo.ico $(SolutionDir)bin\Debug</PreBuildEvent>
+xcopy /y $(MSBuildProjectDirectory)\Logo.ico $(SolutionDir)bin\Debug
+xcopy /y $(SolutionDir)Packages\JLib\* $(SolutionDir)bin\Debug
+xcopy /y $(SolutionDir)Packages\Modbus\* $(SolutionDir)bin\Debug</PreBuildEvent>
   </PropertyGroup>
 </Project>
