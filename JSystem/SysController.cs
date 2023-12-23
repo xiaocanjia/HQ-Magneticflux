@@ -128,10 +128,10 @@ namespace JSystem
         
         public void UnInit()
         {
+            Stop(true);
             IOMgr.UnInit();
             DeviceMgr.UnInit();
             StationMgr?.End();
-            Stop(true);
         }
 
         private bool SaveProject(string filePath)
