@@ -42,5 +42,12 @@ namespace JSystem.Device
                 Lb_Value.Text = value.ToString();
             }
         }
+
+        private void Btn_EncoderZeroing_Click(object sender, EventArgs e)
+        {
+            MagneticFlux magnetic = (MagneticFlux)_device;
+            if (!magnetic.ClearZero())
+                UIMessageTip.ShowError("清零失败");
+        }
     }
 }

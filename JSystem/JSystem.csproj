@@ -193,6 +193,13 @@
     <Compile Include="Device\ProgramPower\ProgramPowerView.Designer.cs">
       <DependentUpon>ProgramPowerView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Device\SerialComm\OmronHeightSensor\OmronHeightSensor.cs" />
+    <Compile Include="Device\SerialComm\OmronHeightSensor\OmronHeightSensorView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Device\SerialComm\OmronHeightSensor\OmronHeightSensorView.Designer.cs">
+      <DependentUpon>OmronHeightSensorView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Device\SerialComm\MagneticFlux\MagneticFlux.cs" />
     <Compile Include="Device\SerialComm\MagneticFlux\MagneticFluxView.cs">
       <SubType>UserControl</SubType>
@@ -416,6 +423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Device\ProgramPower\ProgramPowerView.resx">
       <DependentUpon>ProgramPowerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Device\SerialComm\OmronHeightSensor\OmronHeightSensorView.resx">
+      <DependentUpon>OmronHeightSensorView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Device\SerialComm\MagneticFlux\MagneticFluxView.resx">
       <DependentUpon>MagneticFluxView.cs</DependentUpon>

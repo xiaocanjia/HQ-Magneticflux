@@ -38,11 +38,11 @@ namespace JSystem.Station
                     switch (Step)
                     {
                         case (int)EStationStep.进站:
-                            if (OnGetIn("NG出料按钮1") || OnGetIn("NG出料按钮2"))
+                            if (OnGetIn("NG皮带启动按钮1") || OnGetIn("NG皮带启动按钮2"))
                             {
-                                if (OnGetIn("NG皮带线满料"))
+                                if (OnGetIn("NG皮带感应满料"))
                                 {
-                                    AddLog("NG皮带线满料，请手动清料");
+                                    AddLog("NG皮带满料，请手动清料");
                                     break;
                                 }
                                 MoveToPos("皮带", GetAxisByName("皮带").GetCmdPos() + ParamManager.GetDoubleParam("NG皮带移动间距"));

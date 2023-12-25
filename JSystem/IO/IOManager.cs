@@ -111,7 +111,7 @@ namespace JSystem.IO
                     OnInit?.Invoke();
                 if (GetEdgeSignal("启动按钮", true))
                     OnStart?.Invoke();
-                if (GetEdgeSignal("停止按钮", true))
+                if (GetEdgeSignal("暂停按钮", true))
                     OnPause?.Invoke(true);
                 if (!_isStart) continue;
                 if (!GetIn("急停按钮"))

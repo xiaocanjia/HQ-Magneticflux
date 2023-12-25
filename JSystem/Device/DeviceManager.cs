@@ -30,15 +30,18 @@ namespace JSystem.Device
 
         public DeviceManager()
         {
+            
+            _deviceList.Add(new Board("HY轴卡1"));
+            _deviceList.Add(new Board("HY轴卡2"));
+            _deviceList.Add(new Board("华亚IO卡"));
             _deviceList.Add(new ScanningGun("扫码枪1"));
             _deviceList.Add(new ScanningGun("扫码枪2"));
             _deviceList.Add(new ScanningGun("扫码枪3"));
             _deviceList.Add(new ScanningGun("扫码枪4"));
-            _deviceList.Add(new Board("HY轴卡1"));
-            _deviceList.Add(new Board("HY轴卡2"));
-            _deviceList.Add(new Board("华亚IO卡"));
-            _deviceList.Add(new MagneticFlux("磁通计"));
+            _deviceList.Add(new MagneticFlux("磁通计1"));
+            _deviceList.Add(new MagneticFlux("磁通计2"));
             _deviceList.Add(new MesSys("Mes系统"));
+            
         }
 
         public DeviceBase GetDevice(string name)

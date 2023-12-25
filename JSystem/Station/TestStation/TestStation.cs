@@ -1,4 +1,5 @@
-﻿using JSystem.Param;
+﻿using JSystem.Device;
+using JSystem.Param;
 using System;
 using System.Threading;
 
@@ -69,22 +70,22 @@ namespace JSystem.Station
                                 OnInitDisp();
                                 if (!Test()) break;
                                 OnSetCT(DateTime.Now.Subtract(start).TotalSeconds / 4);
-                                AddLog("等待移动到皮带线3");
+                                AddLog("等待移动到皮带3");
                                 JumpStep((int)EStationStep.出站);
                             }
                             break;
                         case (int)EStationStep.出站:
-                            if (!OnGetIn("皮带线3感应有料"))
+                            if (!OnGetIn("皮带3感应有料"))
                             {
                                 SetOut("顶升缸", false);
                                 SetOut("阻挡缸3", false);
-                                JogMove("皮带线2", 1);
-                                JogMove("皮带线3", 1);
-                                if (!GetIn("皮带线3感应有料", true, 5000))
+                                SetOut("皮带2", true);
+                                SetOut("皮带3", true);
+                                if (!GetIn("皮带3感应有料", true, 5000))
                                     break;
-                                AddLog("产品移动到皮带线3");
-                                JogMove("皮带线2", 0);
-                                JogMove("皮带线3", 0);
+                                AddLog("产品移动到皮带3");
+                                SetOut("皮带2", false);
+                                SetOut("皮带3", false);
                                 Delay(1000); //加上延迟，减速停止没那么快
                                 SetOut("阻挡缸3", true);
                                 JumpStep((int)EStationStep.进站);
@@ -125,8 +126,9 @@ namespace JSystem.Station
                     return false;
                 if (!MoveToPos(new double[] { double.NaN, double.NaN, pos[2], double.NaN, double.NaN, pos[5] }, "磁通量检测位1"))
                     return false;
-                magneticflux[0] = 0;
-                magneticflux[2] = 0;
+                Delay(1000);
+                magneticflux[0] = ((MagneticFlux)OnGetDevice("磁通计1")).GetCurrValue();
+                magneticflux[2] = ((MagneticFlux)OnGetDevice("磁通计2")).GetCurrValue();
                 if (!MoveToPos(new double[] { double.NaN, double.NaN, 0, double.NaN, double.NaN, 0 }, "安全高度"))
                     return false;
             }
@@ -150,8 +152,9 @@ namespace JSystem.Station
                     return false;
                 if (!MoveToPos(new double[] { double.NaN, double.NaN, pos[2], double.NaN, double.NaN, pos[5] }, "磁通量检测位2"))
                     return false;
-                magneticflux[1] = 0;
-                magneticflux[3] = 0;
+                Delay(1000);
+                magneticflux[1] = ((MagneticFlux)OnGetDevice("磁通计1")).GetCurrValue();
+                magneticflux[3] = ((MagneticFlux)OnGetDevice("磁通计2")).GetCurrValue();
                 if (!MoveToPos(new double[] { double.NaN, double.NaN, 0, double.NaN, double.NaN, 0 }, "安全高度"))
                     return false;
             }
@@ -163,18 +166,20 @@ namespace JSystem.Station
         public override bool Reset()
         {
             State = EStationState.RESETING;
-            if (OnGetIn("皮带线2感应有料"))
-            {
-                AddLog("请先将检测位的产品取出");
-                return false;
-            }
+            SetOut("阻挡缸4", true);
             SetOut("顶升缸", false);
             if (!GoHome(new bool[] { false, false, true, false, false, true }))
                 return false;
             if (!GoHome(new bool[] { true, true, false, true, true, false }))
                 return false;
+            if (OnGetIn("皮带2感应有料"))
+            {
+                SetOut("阻挡缸3", false);
+                AddLog("请先将检测位的产品取出");
+                return false;
+            }
             SetOut("阻挡缸3", true);
-            Step = (int)EStationStep.进站;
+            JumpStep((int)EStationStep.进站);
             State = EStationState.RESETED;
             return base.Reset();
         }

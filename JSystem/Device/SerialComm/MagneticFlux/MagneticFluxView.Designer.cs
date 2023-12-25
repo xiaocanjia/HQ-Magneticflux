@@ -41,6 +41,7 @@
             this.CB_Unit = new Sunny.UI.UIComboBox();
             this.uiLabel6 = new Sunny.UI.UILabel();
             this.Lb_Value = new Sunny.UI.UILabel();
+            this.Btn_EncoderZeroing = new Sunny.UI.UIButton();
             this.SuspendLayout();
             // 
             // uiLabel4
@@ -234,6 +235,24 @@
             this.Lb_Value.Text = "0.0";
             this.Lb_Value.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // Btn_EncoderZeroing
+            // 
+            this.Btn_EncoderZeroing.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Btn_EncoderZeroing.FillColor = System.Drawing.Color.SteelBlue;
+            this.Btn_EncoderZeroing.FillHoverColor = System.Drawing.Color.LightSteelBlue;
+            this.Btn_EncoderZeroing.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.Btn_EncoderZeroing.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.Btn_EncoderZeroing.Location = new System.Drawing.Point(286, 428);
+            this.Btn_EncoderZeroing.MinimumSize = new System.Drawing.Size(1, 1);
+            this.Btn_EncoderZeroing.Name = "Btn_EncoderZeroing";
+            this.Btn_EncoderZeroing.RectColor = System.Drawing.Color.SteelBlue;
+            this.Btn_EncoderZeroing.Size = new System.Drawing.Size(73, 29);
+            this.Btn_EncoderZeroing.Style = Sunny.UI.UIStyle.Custom;
+            this.Btn_EncoderZeroing.StyleCustomMode = true;
+            this.Btn_EncoderZeroing.TabIndex = 241;
+            this.Btn_EncoderZeroing.Text = "清零";
+            this.Btn_EncoderZeroing.Click += new System.EventHandler(this.Btn_EncoderZeroing_Click);
+            // 
             // MagneticFluxView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -244,6 +263,7 @@
             this.Controls.Add(this.CB_Unit);
             this.Controls.Add(this.CB_Range);
             this.Controls.Add(this.uiLabel5);
+            this.Controls.Add(this.Btn_EncoderZeroing);
             this.Controls.Add(this.Btn_SetUnit);
             this.Controls.Add(this.uiLabel4);
             this.Controls.Add(this.uiLabel3);
@@ -259,6 +279,7 @@
             this.Controls.SetChildIndex(this.uiLabel3, 0);
             this.Controls.SetChildIndex(this.uiLabel4, 0);
             this.Controls.SetChildIndex(this.Btn_SetUnit, 0);
+            this.Controls.SetChildIndex(this.Btn_EncoderZeroing, 0);
             this.Controls.SetChildIndex(this.uiLabel5, 0);
             this.Controls.SetChildIndex(this.CB_Range, 0);
             this.Controls.SetChildIndex(this.CB_Unit, 0);
@@ -283,5 +304,6 @@
         private Sunny.UI.UIComboBox CB_Unit;
         private Sunny.UI.UILabel uiLabel6;
         private Sunny.UI.UILabel Lb_Value;
+        private Sunny.UI.UIButton Btn_EncoderZeroing;
     }
 }

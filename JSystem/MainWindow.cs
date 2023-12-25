@@ -49,6 +49,7 @@ namespace JSystem
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             _controller.UnInit();
+            Environment.Exit(1);
         }
 
         public MainWindow(SysController controller) : this()

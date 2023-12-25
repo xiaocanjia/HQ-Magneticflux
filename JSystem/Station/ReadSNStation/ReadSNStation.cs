@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using JSystem.Device;
 
 namespace JSystem.Station
@@ -42,13 +43,13 @@ namespace JSystem.Station
                     switch (Step)
                     {
                         case (int)EStationStep.进站:
-                            if (OnGetIn("皮带线1感应有料1") && !OnGetIn("皮带线1感应有料2"))
+                            if (OnGetIn("进料启动按钮") && OnGetIn("皮带1感应有料1") && !OnGetIn("皮带1感应有料2"))
                             {
                                 SetOut("阻挡缸1", false);
-                                SetOut("皮带线1", true);
-                                if (!GetIn("皮带线1感应有料2", true, 5000))
+                                SetOut("皮带1", true);
+                                if (!GetIn("皮带1感应有料2", true, 5000))
                                     break;
-                                SetOut("皮带线1", false);
+                                SetOut("皮带1", false);
                                 SetOut("阻挡缸1", true);
                                 gun = (ScanningGun)OnGetDevice("扫码枪");
                                 JumpStep((int)EStationStep.扫码);
@@ -56,32 +57,34 @@ namespace JSystem.Station
                             break;
                         case (int)EStationStep.扫码:
                             {
-                                string sn1 = ((ScanningGun)OnGetDevice("扫码枪1")).ReadSN();
-                                AddLog($"产品1 SN为{sn1}");
-                                OnAddSN("测试工站", sn1);
-                                string sn2 = ((ScanningGun)OnGetDevice("扫码枪2")).ReadSN();
-                                AddLog($"产品2 SN为{sn2}");
-                                OnAddSN("测试工站", sn2);
-                                string sn3 = ((ScanningGun)OnGetDevice("扫码枪3")).ReadSN();
-                                AddLog($"产品3 SN为{sn3}");
-                                OnAddSN("测试工站", sn3);
-                                string sn4 = ((ScanningGun)OnGetDevice("扫码枪4")).ReadSN();
-                                AddLog($"产品4 SN为{sn4}");
-                                OnAddSN("测试工站", sn4);
-                                AddLog($"等待移动产品到皮带线2");
+                                Task[] taskPool = new Task[4];
+                                string[] snArr = new string[4];
+                                for (int i = 0; i < 4; i++)
+                                {
+                                    taskPool[i] = new Task((idx) =>
+                                    {
+                                        snArr[(int)idx] = ((ScanningGun)OnGetDevice($"扫码枪{(int)idx + 1}")).ReadSN();
+                                        AddLog($"产品{(int)idx + 1} SN为{snArr[(int)idx]}");
+                                    }, i);
+                                    taskPool[i].Start();
+                                }
+                                Task.WaitAll(taskPool);
+                                for (int i = 0; i < 4; i++)
+                                    OnAddSN("测试工站", snArr[i]);
+                                AddLog($"等待移动产品到皮带2");
                                 JumpStep((int)EStationStep.出站);
                                 break;
                             }
                         case (int)EStationStep.出站:
-                            if (!OnGetIn("皮带线2感应有料") && OnGetStep("测试工站") == (int)TestStation.EStationStep.进站)
+                            if (!OnGetIn("皮带2感应有料") && OnGetStep("测试工站") == (int)TestStation.EStationStep.进站)
                             {
                                 SetOut("阻挡缸2", false);
-                                SetOut("皮带线1", true);
-                                SetOut("皮带线2", true);
-                                if (!GetIn("皮带线2感应有料", true, 5000))
+                                SetOut("皮带1", true);
+                                SetOut("皮带2", true);
+                                if (!GetIn("皮带2感应有料", true, 5000))
                                     break;
-                                SetOut("皮带线1", false);
-                                SetOut("皮带线2", false);
+                                SetOut("皮带1", false);
+                                SetOut("皮带2", false);
                                 SetOut("阻挡缸2", true);
                                 JumpStep((int)EStationStep.出站完成);
                             }
@@ -107,13 +110,14 @@ namespace JSystem.Station
         public override bool Reset()
         {
             State = EStationState.RESETING;
-            if (OnGetIn("皮带线1感应有料2"))
+            if (OnGetIn("皮带1感应有料2"))
             {
                 AddLog("请先将扫码位的产品取出");
                 return false;
             }
             SetOut("阻挡缸1", true);
-            Step = (int)EStationStep.进站;
+            SetOut("阻挡缸2", true);
+            JumpStep((int)EStationStep.进站);
             State = EStationState.RESETED;
             return base.Reset();
         }

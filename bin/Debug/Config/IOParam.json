@@ -15,259 +15,210 @@
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
         "PointIndex": 1,
-        "Name": "复位按钮"
+        "Name": "数显气压"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
         "PointIndex": 2,
+        "Name": "进料启动按钮"
+      },
+      {
+        "$type": "JSystem.IO.DIParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 0,
+        "PointIndex": 3,
+        "Name": "出站完成按钮"
+      },
+      {
+        "$type": "JSystem.IO.DIParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 0,
+        "PointIndex": 4,
+        "Name": "NG皮带启动按钮1"
+      },
+      {
+        "$type": "JSystem.IO.DIParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 0,
+        "PointIndex": 5,
+        "Name": "NG皮带启动按钮2"
+      },
+      {
+        "$type": "JSystem.IO.DIParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 0,
+        "PointIndex": 6,
+        "Name": "NG皮带感应有料"
+      },
+      {
+        "$type": "JSystem.IO.DIParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 0,
+        "PointIndex": 7,
+        "Name": "NG皮带取料感应"
+      },
+      {
+        "$type": "JSystem.IO.DIParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 0,
+        "PointIndex": 8,
+        "Name": "NG皮带感应满料"
+      },
+      {
+        "$type": "JSystem.IO.DIParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 0,
+        "PointIndex": 9,
         "Name": "启动按钮"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
-        "PointIndex": 2,
-        "Name": "停止按钮"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex":0 ,
-        "PointIndex": 0,
-        "Name": "进料位1感应有料"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 0,
-        "PointIndex": 1,
-        "Name": "点亮位1感应有料"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 0,
-        "PointIndex": 2,
-        "Name": "取料位1感应有料"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 0,
-        "PointIndex": 3,
-        "Name": "定位气缸1原位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 0,
-        "PointIndex": 4,
-        "Name": "定位气缸1到位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 0,
-        "PointIndex": 5,
-        "Name": "点亮气缸1原位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 0,
-        "PointIndex": 6,
-        "Name": "点亮气缸1到位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 0,
-        "PointIndex": 7,
-        "Name": "阻挡气缸1原位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 0,
-        "PointIndex": 8,
-        "Name": "阻挡气缸1到位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 0,
-        "PointIndex": 9,
-        "Name": "NG皮带位置1"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 0,
         "PointIndex": 10,
-        "Name": "NG皮带位置2"
+        "Name": "复位按钮"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
         "PointIndex": 11,
-        "Name": "OK皮带位置1"
+        "Name": "暂停按钮"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
         "PointIndex": 12,
-        "Name": "OK皮带位置2"
+        "Name": "前门禁"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
         "PointIndex": 13,
-        "Name": "皮带1允许出料"
+        "Name": "后门禁"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
         "PointIndex": 14,
-        "Name": "皮带2允许出料"
+        "Name": "左门禁"
+      },
+      {
+        "$type": "JSystem.IO.DIParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 0,
+        "PointIndex": 15,
+        "Name": "右门禁"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 1,
         "PointIndex": 0,
-        "Name": "进料位2感应有料"
+        "Name": "皮带1感应有料1"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 1,
         "PointIndex": 1,
-        "Name": "点亮位2感应有料"
+        "Name": "阻挡缸1原位"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 1,
         "PointIndex": 2,
-        "Name": "取料位2感应有料"
+        "Name": "阻挡缸1到位"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 1,
         "PointIndex": 3,
-        "Name": "定位气缸2原位"
+        "Name": "皮带1感应有料2"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 1,
         "PointIndex": 4,
-        "Name": "定位气缸2到位"
+        "Name": "阻挡缸2原位"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 1,
         "PointIndex": 5,
-        "Name": "点亮气缸2原位"
+        "Name": "阻挡缸2到位"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 1,
         "PointIndex": 6,
-        "Name": "点亮气缸2到位"
+        "Name": "皮带2感应有料"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 1,
         "PointIndex": 7,
-        "Name": "阻挡气缸2原位"
+        "Name": "阻挡缸3原位"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 1,
         "PointIndex": 8,
-        "Name": "阻挡气缸2到位"
+        "Name": "阻挡缸3到位"
       },
       {
         "$type": "JSystem.IO.DIParam, JSystem",
         "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
-        "PointIndex": 0,
-        "Name": "伸缩缸1到位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
-        "PointIndex": 1,
-        "Name": "伸缩缸1原位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
-        "PointIndex": 2,
-        "Name": "夹爪1原位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
-        "PointIndex": 3,
-        "Name": "夹爪1到位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
-        "PointIndex": 4,
-        "Name": "伸缩缸2到位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
-        "PointIndex": 5,
-        "Name": "伸缩缸2原位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
-        "PointIndex": 6,
-        "Name": "夹爪2到位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
-        "PointIndex": 7,
-        "Name": "夹爪2原位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
-        "PointIndex": 8,
-        "Name": "点亮气缸3到位"
-      },
-      {
-        "$type": "JSystem.IO.DIParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
+        "AxisIndex": 1,
         "PointIndex": 9,
-        "Name": "点亮气缸3原位"
+        "Name": "顶升缸原位"
+      },
+      {
+        "$type": "JSystem.IO.DIParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 1,
+        "PointIndex": 10,
+        "Name": "顶升缸到位"
+      },
+      {
+        "$type": "JSystem.IO.DIParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 1,
+        "PointIndex": 11,
+        "Name": "皮带3感应有料"
+      },
+      {
+        "$type": "JSystem.IO.DIParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 1,
+        "PointIndex": 12,
+        "Name": "阻挡缸3原位"
+      },
+      {
+        "$type": "JSystem.IO.DIParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 1,
+        "PointIndex": 13,
+        "Name": "阻挡缸3到位"
+      },
+      {
+        "$type": "JSystem.IO.DIParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 1,
+        "PointIndex": 14,
+        "Name": "照明按钮"
       }
     ]
   },
@@ -279,175 +230,147 @@
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
         "PointIndex": 0,
-        "Name": "红灯"
-      },
-      {
-        "$type": "JSystem.IO.DOParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 0,
-        "PointIndex": 1,
-        "Name": "绿灯"
-      },
-      {
-        "$type": "JSystem.IO.DOParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 0,
-        "PointIndex": 2,
-        "Name": "黄灯"
-      },
-      {
-        "$type": "JSystem.IO.DOParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 0,
-        "PointIndex": 3,
-        "Name": "蜂鸣器"
-      },
-      {
-        "$type": "JSystem.IO.DOParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex":0,
-        "PointIndex": 4,
         "Name": "OK指示灯1"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
-        "PointIndex": 5,
+        "PointIndex": 1,
         "Name": "NG指示灯1"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
-        "PointIndex": 6,
+        "PointIndex": 2,
         "Name": "OK指示灯2"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
-        "PointIndex": 7,
+        "PointIndex": 3,
         "Name": "NG指示灯2"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
-        "PointIndex": 8,
+        "PointIndex": 4,
         "Name": "OK指示灯3"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
-        "PointIndex": 9,
+        "PointIndex": 5,
         "Name": "NG指示灯3"
       },
-	    {
+      {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
-        "PointIndex": 10,
+        "PointIndex": 6,
         "Name": "OK指示灯4"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 0,
-        "PointIndex": 11,
+        "PointIndex": 7,
         "Name": "NG指示灯4"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
-        "AxisIndex": 1,
-        "PointIndex": 2,
-        "Name": "点亮气缸2原位"
+        "AxisIndex": 0,
+        "PointIndex": 11,
+        "Name": "LED灯"
+      },
+      {
+        "$type": "JSystem.IO.DOParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 0,
+        "PointIndex": 12,
+        "Name": "红灯"
+      },
+      {
+        "$type": "JSystem.IO.DOParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 0,
+        "PointIndex": 13,
+        "Name": "黄灯"
+      },
+      {
+        "$type": "JSystem.IO.DOParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 0,
+        "PointIndex": 14,
+        "Name": "绿灯"
+      },
+      {
+        "$type": "JSystem.IO.DOParam, JSystem",
+        "BoardName": "华亚IO卡",
+        "AxisIndex": 0,
+        "PointIndex": 15,
+        "Name": "蜂鸣器"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
         "AxisIndex": 1,
-        "PointIndex": 3,
-        "Name": "点亮气缸2到位"
-      },
-      {
-        "$type": "JSystem.IO.DOParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 1,
-        "PointIndex": 4,
-        "Name": "阻挡气缸2"
-      },
-      {
-        "$type": "JSystem.IO.DOParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
         "PointIndex": 0,
-        "Name": "伸缩缸1到位"
+        "Name": "阻挡缸1"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
+        "AxisIndex": 1,
         "PointIndex": 1,
-        "Name": "伸缩缸1原位"
+        "Name": "阻挡缸2"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
+        "AxisIndex": 1,
         "PointIndex": 2,
-        "Name": "夹爪1到位"
+        "Name": "阻挡缸3"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
+        "AxisIndex": 1,
         "PointIndex": 3,
-        "Name": "夹爪1原位"
+        "Name": "顶升缸"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
+        "AxisIndex": 1,
         "PointIndex": 4,
-        "Name": "伸缩缸2到位"
+        "Name": "阻挡缸4"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
-        "PointIndex": 5,
-        "Name": "伸缩缸2原位"
+        "AxisIndex": 1,
+        "PointIndex": 13,
+        "Name": "皮带1"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
-        "PointIndex": 6,
-        "Name": "夹爪2到位"
+        "AxisIndex": 1,
+        "PointIndex": 14,
+        "Name": "皮带2"
       },
       {
         "$type": "JSystem.IO.DOParam, JSystem",
         "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
-        "PointIndex": 7,
-        "Name": "夹爪2原位"
-      },
-      {
-        "$type": "JSystem.IO.DOParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
-        "PointIndex": 8,
-        "Name": "点亮气缸3到位"
-      },
-      {
-        "$type": "JSystem.IO.DOParam, JSystem",
-        "BoardName": "华亚IO卡",
-        "AxisIndex": 2,
-        "PointIndex": 9,
-        "Name": "点亮气缸3原位"
+        "AxisIndex": 1,
+        "PointIndex": 15,
+        "Name": "皮带3"
       }
     ]
   }

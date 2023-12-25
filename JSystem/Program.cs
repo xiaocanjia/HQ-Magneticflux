@@ -18,7 +18,7 @@ namespace JSystem
             if (processes.Length > 1)
             {
                 MessageBox.Show("程序已打开，请勿重复打开！", "重复打开");
-                Environment.Exit(1);
+                return;
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

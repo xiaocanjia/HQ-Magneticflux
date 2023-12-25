@@ -80,6 +80,7 @@
             this.CbB_BaudRate.Items.AddRange(new object[] {
             "9600",
             "19200",
+            "38400",
             "115200"});
             this.CbB_BaudRate.Location = new System.Drawing.Point(118, 62);
             this.CbB_BaudRate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

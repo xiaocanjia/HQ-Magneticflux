@@ -143,14 +143,36 @@ namespace JSystem.Device
         {
             while (_isOn)
             {
-                WriteCommand(ReadSaveValue);
-                Thread.Sleep(150);
-                byte[] buffer = _bufferList.ToArray();
-                _bufferList.Clear();
-                string ret = Encoding.ASCII.GetString(_bufferList.ToArray());
-                if (ret == "") _currValue = 0.0;
-                _currValue = Convert.ToDouble(ret.Substring(ret.IndexOf("=") + 1, 10));
-                OnUpdateDisp?.Invoke(_currValue);
+                try
+                {
+                    WriteCommand(ReadSaveValue);
+                    Thread.Sleep(150);
+                    byte[] buffer = _bufferList.ToArray();
+                    string ret = Encoding.ASCII.GetString(_bufferList.ToArray());
+                    _bufferList.Clear();
+                    if (!ret.Contains("="))
+                        _currValue = 0.0;
+                    else
+                        _currValue = Convert.ToDouble(ret.Substring(ret.IndexOf("=") + 1, 7));
+                    OnUpdateDisp?.Invoke(_currValue);
+                }
+                catch
+                {
+                    OnUpdateDisp?.Invoke(0.0);
+                }
+            }
+        }
+
+        public bool ClearZero()
+        {
+            try
+            {
+                WriteCommand(EncoderZeroing);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
 

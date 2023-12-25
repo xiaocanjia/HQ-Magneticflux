@@ -1,0 +1,297 @@
+{
+  "$type": "JSystem.Project.SysManagers, JSystem",
+  "DeviceList": {
+    "$type": "System.Collections.Generic.List`1[[JSystem.Device.DeviceBase, JSystem]], mscorlib",
+    "$values": [
+      {
+        "$type": "JSystem.Device.Board, JSystem",
+        "BoardType": 3,
+        "Name": "HY轴卡1",
+        "IsEnable": true
+      },
+      {
+        "$type": "JSystem.Device.Board, JSystem",
+        "BoardType": 3,
+        "Name": "HY轴卡2",
+        "IsEnable": true
+      },
+      {
+        "$type": "JSystem.Device.Board, JSystem",
+        "BoardType": 2,
+        "Name": "华亚IO卡",
+        "IsEnable": true
+      },
+      {
+        "$type": "JSystem.Device.ScanningGun, JSystem",
+        "Command": "start",
+        "MaxLength": 27,
+        "PortName": "COM13",
+        "BaudRate": 115200,
+        "DataBits": 8,
+        "StopBits": 1,
+        "Parity": 0,
+        "Name": "扫码枪1",
+        "IsEnable": true
+      },
+      {
+        "$type": "JSystem.Device.ScanningGun, JSystem",
+        "Command": "end",
+        "MaxLength": 27,
+        "PortName": "COM11",
+        "BaudRate": 115200,
+        "DataBits": 8,
+        "StopBits": 1,
+        "Parity": 0,
+        "Name": "扫码枪2",
+        "IsEnable": true
+      },
+      {
+        "$type": "JSystem.Device.ScanningGun, JSystem",
+        "Command": "start",
+        "MaxLength": 27,
+        "PortName": "COM14",
+        "BaudRate": 115200,
+        "DataBits": 8,
+        "StopBits": 1,
+        "Parity": 0,
+        "Name": "扫码枪3",
+        "IsEnable": true
+      },
+      {
+        "$type": "JSystem.Device.ScanningGun, JSystem",
+        "Command": "start",
+        "MaxLength": 27,
+        "PortName": "COM15",
+        "BaudRate": 115200,
+        "DataBits": 8,
+        "StopBits": 1,
+        "Parity": 0,
+        "Name": "扫码枪4",
+        "IsEnable": true
+      },
+      {
+        "$type": "JSystem.Device.MagneticFlux, JSystem",
+        "PortName": "COM2",
+        "BaudRate": 115200,
+        "DataBits": 8,
+        "StopBits": 1,
+        "Parity": 0,
+        "Name": "磁通计1",
+        "IsEnable": true
+      },
+      {
+        "$type": "JSystem.Device.MagneticFlux, JSystem",
+        "PortName": "COM3",
+        "BaudRate": 115200,
+        "DataBits": 8,
+        "StopBits": 1,
+        "Parity": 0,
+        "Name": "磁通计2",
+        "IsEnable": true
+      },
+      {
+        "$type": "JSystem.Device.MesSys, JSystem",
+        "Type": 2,
+        "Param": {
+          "$type": "MesSDK.MesParam, MesSys",
+          "IP": null,
+          "Port": 0,
+          "Lot": null,
+          "DeviceID": null,
+          "LineID": null,
+          "StationID": null,
+          "ProductID": null,
+          "StaffID": null,
+          "Version": "V1.0.0"
+        },
+        "Name": "Mes系统",
+        "IsEnable": false
+      }
+    ]
+  },
+  "Models": {
+    "$type": "JSystem.Station.DataModel[], JSystem",
+    "$values": [
+      {
+        "$type": "JSystem.Station.DataModel, JSystem",
+        "PointsInfo": {
+          "$type": "JSystem.Station.PointInfo[], JSystem",
+          "$values": []
+        }
+      },
+      {
+        "$type": "JSystem.Station.DataModel, JSystem",
+        "PointsInfo": {
+          "$type": "JSystem.Station.PointInfo[], JSystem",
+          "$values": [
+            {
+              "$type": "JSystem.Station.PointInfo, JSystem",
+              "Name": "高度基准位1",
+              "Pos": {
+                "$type": "System.Double[], mscorlib",
+                "$values": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              }
+            },
+            {
+              "$type": "JSystem.Station.PointInfo, JSystem",
+              "Name": "高度检测位1",
+              "Pos": {
+                "$type": "System.Double[], mscorlib",
+                "$values": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              }
+            },
+            {
+              "$type": "JSystem.Station.PointInfo, JSystem",
+              "Name": "高度基准位2",
+              "Pos": {
+                "$type": "System.Double[], mscorlib",
+                "$values": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              }
+            },
+            {
+              "$type": "JSystem.Station.PointInfo, JSystem",
+              "Name": "高度检测位2",
+              "Pos": {
+                "$type": "System.Double[], mscorlib",
+                "$values": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ]
+              }
+            },
+            {
+              "$type": "JSystem.Station.PointInfo, JSystem",
+              "Name": "磁通量检测位1",
+              "Pos": {
+                "$type": "System.Double[], mscorlib",
+                "$values": [
+                  45.286,
+                  -66.0,
+                  23.0,
+                  -71.796,
+                  -45.0,
+                  29.0
+                ]
+              }
+            },
+            {
+              "$type": "JSystem.Station.PointInfo, JSystem",
+              "Name": "磁通量检测位2",
+              "Pos": {
+                "$type": "System.Double[], mscorlib",
+                "$values": [
+                  101.5,
+                  -66.0,
+                  23.0,
+                  -5.0,
+                  -45.0,
+                  29.0
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "$type": "JSystem.Station.DataModel, JSystem",
+        "PointsInfo": {
+          "$type": "JSystem.Station.PointInfo[], JSystem",
+          "$values": []
+        }
+      }
+    ]
+  },
+  "ParamsArray": {
+    "$type": "JSystem.Param.BasicParam[], JSystem",
+    "$values": [
+      {
+        "$type": "JSystem.Param.BasicParam, JSystem",
+        "Name": "禁用蜂鸣器",
+        "Type": "BOOL",
+        "Value": "是",
+        "Right": "管理员"
+      },
+      {
+        "$type": "JSystem.Param.BasicParam, JSystem",
+        "Name": "禁用安全光栅",
+        "Type": "BOOL",
+        "Value": "是",
+        "Right": "管理员"
+      },
+      {
+        "$type": "JSystem.Param.BasicParam, JSystem",
+        "Name": "禁用安全门",
+        "Type": "BOOL",
+        "Value": "是",
+        "Right": "管理员"
+      },
+      {
+        "$type": "JSystem.Param.BasicParam, JSystem",
+        "Name": "NG皮带移动间距",
+        "Type": "DOUBLE",
+        "Value": "100",
+        "Right": "管理员"
+      },
+      {
+        "$type": "JSystem.Param.BasicParam, JSystem",
+        "Name": "磁通量下限",
+        "Type": "DOUBLE",
+        "Value": "1",
+        "Right": "管理员"
+      },
+      {
+        "$type": "JSystem.Param.BasicParam, JSystem",
+        "Name": "磁通量上限",
+        "Type": "DOUBLE",
+        "Value": "2",
+        "Right": "管理员"
+      },
+      {
+        "$type": "JSystem.Param.BasicParam, JSystem",
+        "Name": "禁用测高",
+        "Type": "BOOL",
+        "Value": "是",
+        "Right": "管理员"
+      },
+      {
+        "$type": "JSystem.Param.BasicParam, JSystem",
+        "Name": "高度下限",
+        "Type": "DOUBLE",
+        "Value": "0",
+        "Right": "管理员"
+      },
+      {
+        "$type": "JSystem.Param.BasicParam, JSystem",
+        "Name": "高度上限",
+        "Type": "DOUBLE",
+        "Value": "1",
+        "Right": "管理员"
+      }
+    ]
+  }
+}
