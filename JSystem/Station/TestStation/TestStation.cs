@@ -1,7 +1,10 @@
 ﻿using JSystem.Device;
 using JSystem.Param;
+using MeasResult;
 using System;
+using System.Collections.Generic;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace JSystem.Station
 {
@@ -19,7 +22,9 @@ namespace JSystem.Station
 
         public Action OnInitDisp;
 
-        public Action<int, string, double, double> OnSendRets;
+        public Action<int, string, double, double, bool> OnSendRets;
+
+        private List<MesResult> _retList = null;
 
         public TestStation()
         {
@@ -170,13 +175,38 @@ namespace JSystem.Station
                     return false;
             }
             for (int i = 0; i < 4; i++)
-                OnSendRets(i, SNQueue.Dequeue(), magneticflux[i], height[i]);
+            {
+                string sn = SNQueue.Dequeue();
+                bool ret = false;
+                if (_retList != null && _retList.Count >= 2)
+                {
+                    ret &= ((MesSys)OnGetDevice("Mes系统")).Arrival(sn, out string msg);
+                    AddLog($"Mes入站信息：{msg}");
+                    if (ret == true)
+                    {
+                        _retList[0].SetResult(magneticflux[i]);
+                        _retList[1].SetResult(height[i]);
+                        ret &= ((MesSys)OnGetDevice("Mes系统")).Departure(sn, _retList, out msg);
+                        AddLog($"Mes出站信息：{msg}");
+                    }
+                }
+                OnSendRets(i, sn, magneticflux[i], height[i], ret);
+            }
             return true;
         }
 
         public override bool Reset()
         {
             State = EStationState.RESETING;
+            _retList = new List<MesResult>();
+            MesResult result1 = new MesResult();
+            result1.UpperLimit = ParamManager.GetDoubleParam("磁通量上限");
+            result1.LowerLimit = ParamManager.GetDoubleParam("磁通量下限");
+            _retList.Add(result1);
+            MesResult result2 = new MesResult();
+            result2.UpperLimit = ParamManager.GetDoubleParam("测高上限");
+            result2.LowerLimit = ParamManager.GetDoubleParam("测高下限");
+            _retList.Add(result2);
             SetOut("阻挡缸4", true);
             SetOut("顶升缸", false);
             if (!GoHome(new bool[] { false, false, true, false, false, true }))

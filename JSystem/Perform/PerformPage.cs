@@ -138,7 +138,7 @@ namespace JSystem.Perform
             }
         }
         
-        private void UpdateView(int idx, string sn, double magneticflux, double height)
+        private void UpdateView(int idx, string sn, double magneticflux, double height, bool mesRet)
         {
             try
             {
@@ -155,9 +155,10 @@ namespace JSystem.Perform
                 DGV_Result.Rows[idx].Cells[5].Value = ParamManager.GetDoubleParam("测高下限");
                 DGV_Result.Rows[idx].Cells[6].Value = height;
                 DGV_Result.Rows[idx].Cells[7].Value = ParamManager.GetDoubleParam("测高下限");
+                DGV_Result.Rows[idx].Cells[8].Value = mesRet ? "OK" : "NG";
                 string dec = "OK";
                 if (magneticflux < ParamManager.GetDoubleParam("磁通量下限") || magneticflux > ParamManager.GetDoubleParam("磁通量上限") ||
-                    height < ParamManager.GetDoubleParam("高度下限") || height > ParamManager.GetDoubleParam("高度上限"))
+                    height < ParamManager.GetDoubleParam("高度下限") || height > ParamManager.GetDoubleParam("高度上限") || !mesRet)
                     dec = "NG";
                 TxtHelper.FileWrite(fielPath, DateTime.Now.ToString("HH-mm-ss") + $",{sn},{dec},{magneticflux},{height}");
                 DGV_Result.Rows[idx].DefaultCellStyle.ForeColor = dec == "NG" ? Color.Red : Color.Green;
