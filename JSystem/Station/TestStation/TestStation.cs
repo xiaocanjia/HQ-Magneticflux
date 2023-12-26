@@ -81,9 +81,9 @@ namespace JSystem.Station
                                 SetOut("阻挡缸3", false);
                                 SetOut("皮带2", true);
                                 SetOut("皮带3", true);
+                                Delay(4500);
                                 if (!GetIn("皮带3感应有料", true, 5000))
                                     break;
-                                Delay(3500);
                                 SetOut("阻挡缸3", true);
                                 AddLog("产品移动到皮带3");
                                 SetOut("皮带2", false);

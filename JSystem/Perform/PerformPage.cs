@@ -85,6 +85,7 @@ namespace JSystem.Perform
                     case EDeviceState.EMERGENCY:
                         StatusPanel.UpdateState(state, 2, 0, 0, 1);
                         Btn_Reset.Enabled = true;
+                        Btn_Start.BringToFront();
                         break;
                 }
             }
