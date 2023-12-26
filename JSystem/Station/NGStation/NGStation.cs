@@ -40,12 +40,12 @@ namespace JSystem.Station
                         case (int)EStationStep.进站:
                             if (OnGetIn("NG皮带启动按钮1") || OnGetIn("NG皮带启动按钮2"))
                             {
-                                if (OnGetIn("NG皮带感应满料"))
+                                if (!OnGetIn("NG皮带感应满料"))
                                 {
                                     AddLog("NG皮带满料，请手动清料");
                                     break;
                                 }
-                                MoveToPos("皮带", GetAxisByName("皮带").GetCmdPos() + ParamManager.GetDoubleParam("NG皮带移动间距"));
+                                MoveToPos("NG皮带", GetAxisByName("NG皮带").GetCmdPos() + ParamManager.GetDoubleParam("NG皮带移动间距"));
                             }
                             break;
                         default:

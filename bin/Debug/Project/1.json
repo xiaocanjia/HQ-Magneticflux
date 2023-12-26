@@ -71,7 +71,7 @@
       },
       {
         "$type": "JSystem.Device.MagneticFlux, JSystem",
-        "PortName": "COM2",
+        "PortName": "COM3",
         "BaudRate": 115200,
         "DataBits": 8,
         "StopBits": 1,
@@ -81,7 +81,7 @@
       },
       {
         "$type": "JSystem.Device.MagneticFlux, JSystem",
-        "PortName": "COM3",
+        "PortName": "COM2",
         "BaudRate": 115200,
         "DataBits": 8,
         "StopBits": 1,
@@ -192,10 +192,10 @@
                 "$values": [
                   45.286,
                   -66.0,
-                  23.0,
+                  22.4,
                   -71.796,
                   -45.0,
-                  29.0
+                  28.4
                 ]
               }
             },
@@ -207,10 +207,10 @@
                 "$values": [
                   101.5,
                   -66.0,
-                  23.0,
+                  22.4,
                   -5.0,
                   -45.0,
-                  29.0
+                  28.4
                 ]
               }
             }
@@ -254,21 +254,21 @@
         "$type": "JSystem.Param.BasicParam, JSystem",
         "Name": "NG皮带移动间距",
         "Type": "DOUBLE",
-        "Value": "100",
+        "Value": "5",
         "Right": "管理员"
       },
       {
         "$type": "JSystem.Param.BasicParam, JSystem",
         "Name": "磁通量下限",
         "Type": "DOUBLE",
-        "Value": "1",
+        "Value": "0.2",
         "Right": "管理员"
       },
       {
         "$type": "JSystem.Param.BasicParam, JSystem",
         "Name": "磁通量上限",
         "Type": "DOUBLE",
-        "Value": "2",
+        "Value": "0.5",
         "Right": "管理员"
       },
       {

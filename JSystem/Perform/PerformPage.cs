@@ -148,8 +148,12 @@ namespace JSystem.Perform
                     TxtHelper.FileWrite(ParamManager.GetStringParam("数据保存路径"), header);
                 }
                 DGV_Result.Rows[idx].Cells[1].Value = sn;
-                DGV_Result.Rows[idx].Cells[2].Value = magneticflux;
-                DGV_Result.Rows[idx].Cells[3].Value = height;
+                DGV_Result.Rows[idx].Cells[2].Value = ParamManager.GetDoubleParam("磁通量下限");
+                DGV_Result.Rows[idx].Cells[3].Value = magneticflux;
+                DGV_Result.Rows[idx].Cells[4].Value = ParamManager.GetDoubleParam("磁通量上限");
+                DGV_Result.Rows[idx].Cells[5].Value = ParamManager.GetDoubleParam("测高下限");
+                DGV_Result.Rows[idx].Cells[6].Value = height;
+                DGV_Result.Rows[idx].Cells[7].Value = ParamManager.GetDoubleParam("测高下限");
                 string dec = "OK";
                 if (magneticflux < ParamManager.GetDoubleParam("磁通量下限") || magneticflux > ParamManager.GetDoubleParam("磁通量上限") ||
                     height < ParamManager.GetDoubleParam("高度下限") || height > ParamManager.GetDoubleParam("高度上限"))
@@ -157,17 +161,20 @@ namespace JSystem.Perform
                 TxtHelper.FileWrite(fielPath, DateTime.Now.ToString("HH-mm-ss") + $",{sn},{dec},{magneticflux},{height}");
                 DGV_Result.Rows[idx].DefaultCellStyle.ForeColor = dec == "NG" ? Color.Red : Color.Green;
                 _totalCount++;
+                //mes上传
                 if (dec == "OK")
                 {
                     _controller.DeviceMgr.OnSetOut($"OK指示灯{idx + 1}", true);
                     _controller.DeviceMgr.OnSetOut($"NG指示灯{idx + 1}", false);
                     _passCount++;
+                    DGV_Result.Rows[idx].Cells[9].Value = dec;
                 }
                 else
                 {
                     _controller.DeviceMgr.OnSetOut($"OK指示灯{idx + 1}", false);
                     _controller.DeviceMgr.OnSetOut($"NG指示灯{idx + 1}", true);
                     _failCount++;
+                    DGV_Result.Rows[idx].Cells[9].Value = dec;
                 }
                 Lb_OK_Pct.Text = ((_passCount / Convert.ToDouble(_totalCount)) * 100).ToString("F1") + "%";
                 Lb_Total.Text = _totalCount.ToString();

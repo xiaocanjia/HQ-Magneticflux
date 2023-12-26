@@ -81,14 +81,14 @@ namespace JSystem.Station
                                 SetOut("阻挡缸3", false);
                                 SetOut("皮带2", true);
                                 SetOut("皮带3", true);
-                                Delay(3000);
                                 if (!GetIn("皮带3感应有料", true, 5000))
                                     break;
+                                Delay(3500);
+                                SetOut("阻挡缸3", true);
                                 AddLog("产品移动到皮带3");
                                 SetOut("皮带2", false);
                                 SetOut("皮带3", false);
                                 Delay(1000); //加上延迟，减速停止没那么快
-                                SetOut("阻挡缸3", true);
                                 JumpStep((int)EStationStep.进站);
                             }
                             break;
@@ -122,6 +122,11 @@ namespace JSystem.Station
                 height[2] = mesHeight2 - refHeight2;
             }
             {
+                if (!((MagneticFlux)OnGetDevice("磁通计1")).ClearZero() || !((MagneticFlux)OnGetDevice("磁通计2")).ClearZero())//磁通量清零
+                {
+                    ((MagneticFlux)OnGetDevice("磁通计1")).ClearZero();
+                    ((MagneticFlux)OnGetDevice("磁通计2")).ClearZero();
+                }
                 double[] pos = GetPos("磁通量检测位1");
                 if (!MoveToPos(new double[] { pos[0], pos[1], double.NaN, pos[3], pos[4], double.NaN }))
                     return false;
@@ -148,6 +153,11 @@ namespace JSystem.Station
                 height[3] = mesHeight2 - refHeight2;
             }
             {
+                if (!((MagneticFlux)OnGetDevice("磁通计1")).ClearZero() || !((MagneticFlux)OnGetDevice("磁通计2")).ClearZero())//磁通量清零
+                {
+                    ((MagneticFlux)OnGetDevice("磁通计1")).ClearZero();
+                    ((MagneticFlux)OnGetDevice("磁通计2")).ClearZero();
+                }
                 double[] pos = GetPos("磁通量检测位2");
                 if (!MoveToPos(new double[] { pos[0], pos[1], double.NaN, pos[3], pos[4], double.NaN }))
                     return false;

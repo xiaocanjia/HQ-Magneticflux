@@ -62,10 +62,16 @@
             this.uiTabControl1 = new Sunny.UI.UITabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.DGV_Result = new Sunny.UI.UIDataGridView();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.磁通量上限 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uiTableLayoutPanel1.SuspendLayout();
             this.uiTableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -542,10 +548,16 @@
             this.DGV_Result.ColumnHeadersHeight = 32;
             this.DGV_Result.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGV_Result.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column4,
+            this.Column1,
             this.Column2,
+            this.Column4,
             this.Column3,
-            this.Column6});
+            this.磁通量上限,
+            this.Column5,
+            this.Column6,
+            this.Column7,
+            this.Column8,
+            this.Column9});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 12F);
@@ -578,17 +590,18 @@
             this.DGV_Result.ScrollMode = Sunny.UI.UIDataGridView.UIDataGridViewScrollMode.Page;
             this.DGV_Result.SelectedIndex = -1;
             this.DGV_Result.ShowGridLine = true;
-            this.DGV_Result.Size = new System.Drawing.Size(500, 528);
+            this.DGV_Result.Size = new System.Drawing.Size(847, 528);
             this.DGV_Result.StripeOddColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(228)))), ((int)(((byte)(233)))));
             this.DGV_Result.Style = Sunny.UI.UIStyle.Custom;
             this.DGV_Result.StyleCustomMode = true;
             this.DGV_Result.TabIndex = 4;
             // 
-            // Column4
+            // Column1
             // 
-            this.Column4.HeaderText = "序号";
-            this.Column4.Name = "Column4";
-            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column1.HeaderText = "序号";
+            this.Column1.Name = "Column1";
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column1.Width = 50;
             // 
             // Column2
             // 
@@ -599,22 +612,61 @@
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column2.Width = 125;
             // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "磁通量下限";
+            this.Column4.Name = "Column4";
+            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column4.Width = 95;
+            // 
             // Column3
             // 
             this.Column3.HeaderText = "磁通量";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column3.Width = 125;
+            // 
+            // 磁通量上限
+            // 
+            this.磁通量上限.HeaderText = "磁通量上限";
+            this.磁通量上限.Name = "磁通量上限";
+            this.磁通量上限.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.磁通量上限.Width = 95;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "测高下限";
+            this.Column5.Name = "Column5";
+            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column5.Width = 90;
             // 
             // Column6
             // 
-            this.Column6.HeaderText = "高度";
+            this.Column6.HeaderText = "测高高度";
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
             this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column6.Width = 125;
+            this.Column6.Width = 90;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "测高上限";
+            this.Column7.Name = "Column7";
+            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column7.Width = 90;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "MES";
+            this.Column8.Name = "Column8";
+            this.Column8.Width = 55;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "结果";
+            this.Column9.Name = "Column9";
+            this.Column9.Width = 55;
             // 
             // PerformPage
             // 
@@ -670,9 +722,15 @@
         public Sunny.UI.UISymbolButton Btn_Pause;
         private Sunny.UI.UISymbolButton Btn_Reset;
         private Sunny.UI.UIButton Btn_Clear;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn 磁通量上限;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
     }
 }

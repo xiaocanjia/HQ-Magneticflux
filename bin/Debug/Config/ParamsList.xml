@@ -43,13 +43,13 @@
     <Right>管理员</Right>
   </BasicParam>
   <BasicParam>
-    <Name>高度下限</Name>
+    <Name>测高下限</Name>
     <Type>DOUBLE</Type>
     <Value>0</Value>
     <Right>管理员</Right>
   </BasicParam>
   <BasicParam>
-    <Name>高度上限</Name>
+    <Name>测高上限</Name>
     <Type>DOUBLE</Type>
     <Value>0</Value>
     <Right>管理员</Right>

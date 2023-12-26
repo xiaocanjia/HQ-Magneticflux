@@ -168,6 +168,7 @@ namespace JSystem.Device
             try
             {
                 WriteCommand(EncoderZeroing);
+                Thread.Sleep(10);
                 return true;
             }
             catch (Exception ex)
