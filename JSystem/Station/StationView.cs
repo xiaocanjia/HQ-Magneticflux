@@ -171,9 +171,20 @@ namespace JSystem.Station
                 _station.OnPause(false);
                 DialogResult ret = WarningForm.Show(_station.Name, msg);
                 if (ret == DialogResult.Abort)
+                {
+                    _station.AddLog("人工点击中止按钮");
                     _station.OnStop(true);
-                else
+                }
+                else if (ret == DialogResult.Retry)
+                {
+                    _station.AddLog("人工点击重试按钮");
                     _station.OnStart();
+                }
+                else
+                {
+                    _station.AddLog("人工点击忽略按钮");
+                    _station.OnStart();
+                }
                 return ret;
             }
         }

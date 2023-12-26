@@ -348,7 +348,6 @@ namespace JSystem.Station
         {
             try
             {
-            RETRY:
                 DateTime start = DateTime.Now;
                 while (true)
                 {
@@ -367,7 +366,7 @@ namespace JSystem.Station
                             AddLog($"{name}信号检测超时，请检查感应器是否有异常");
                             DialogResult ret = View.DispAlarm($"{name}信号检测超时，请检查感应器是否有异常");
                             if (ret == DialogResult.Retry)
-                                goto RETRY;
+                                return false;
                             else if (ret == DialogResult.Ignore)
                                 return true;
                         }
@@ -444,7 +443,7 @@ namespace JSystem.Station
             State = isManual ? EStationState.MANUAL : EStationState.STOP;
         }
 
-        protected void AddLog(string log, bool isError = false, [CallerFilePath] string filePath = "",
+        public void AddLog(string log, bool isError = false, [CallerFilePath] string filePath = "",
             [CallerMemberName] string caller = "", [CallerLineNumber] int lineNum = 0)
         {
             LogManager.Instance.AddLog(Name + "\t" + log, isError, filePath, caller, lineNum);
