@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 using MeasResult;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -72,12 +70,18 @@ namespace MesSDK
             int len = 102400;
             StringBuilder strdata = new StringBuilder(len);
             string err = "";
+            int ret = 0;
+            JObject data = new JObject();
             foreach (MesResult mRet in retList)
             {
                 if (mRet.Decision == "FAIL")
-                    err += mRet.ID + "FAIL";
+                    err += mRet.ID;
+                data.Add(mRet.ID, mRet.Value);
             }
-            int ret = MesEnd(hMes, sn, _param.StationID, _param.DeviceID, err, strdata, ref len);
+            if (retList == null || retList.Count == 0)
+                ret = MesEnd(hMes, sn, _param.StationID, _param.DeviceID, err, strdata, ref len);
+            else
+                ret = MesEnd2(hMes, sn, "", _param.StationID, _param.DeviceID, err, data.ToString(), strdata, ref len);
             msg = strdata.ToString();
             return ret == 0;
         }
