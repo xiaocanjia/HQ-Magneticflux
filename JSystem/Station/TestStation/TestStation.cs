@@ -4,7 +4,7 @@ using MeasResult;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Windows.Forms;
+using Sunny.UI;
 
 namespace JSystem.Station
 {
@@ -13,11 +13,11 @@ namespace JSystem.Station
         public enum EStationStep
         {
             进站,
-            顶升气缸上升, 
+            顶升气缸上升,
             测试,
             出站
         }
-        
+
         public Action<double> OnSetCT;
 
         public Action OnInitDisp;
@@ -40,7 +40,7 @@ namespace JSystem.Station
                 throw new Exception($"{Name}初始化异常，请检查配置文件是否存在：{ex.Message}");
             }
         }
-        
+
         public override void Run()
         {
             try
@@ -74,6 +74,8 @@ namespace JSystem.Station
                             {
                                 OnInitDisp();
                                 if (!Test()) break;
+                                double[] pos = GetPos("磁通量检测位1");
+                                if (!MoveToPos(new double[] { pos[0], pos[1], double.NaN, pos[3], pos[4], double.NaN }, "磁通量检测位1", -1, true)) break;
                                 OnSetCT(DateTime.Now.Subtract(start).TotalSeconds / 4);
                                 AddLog("等待移动到皮带3");
                                 JumpStep((int)EStationStep.出站);
@@ -137,13 +139,13 @@ namespace JSystem.Station
                     return false;
                 if (!MoveToPos(new double[] { double.NaN, double.NaN, pos[2], double.NaN, double.NaN, pos[5] }, "磁通量检测位1"))
                     return false;
-                Delay(1000);
+                Delay(400);
                 magneticflux[0] = ((MagneticFlux)OnGetDevice("磁通计1")).GetCurrValue();
                 magneticflux[2] = ((MagneticFlux)OnGetDevice("磁通计2")).GetCurrValue();
                 if (!MoveToPos(new double[] { double.NaN, double.NaN, 0, double.NaN, double.NaN, 0 }, "安全高度"))
                     return false;
             }
-            
+
             if (!ParamManager.GetBoolParam("禁用测高"))
             {
                 if (!MoveToPos(GetPos("高度基准位2")))
@@ -168,7 +170,7 @@ namespace JSystem.Station
                     return false;
                 if (!MoveToPos(new double[] { double.NaN, double.NaN, pos[2], double.NaN, double.NaN, pos[5] }, "磁通量检测位2"))
                     return false;
-                Delay(1000);
+                Delay(400);
                 magneticflux[1] = ((MagneticFlux)OnGetDevice("磁通计1")).GetCurrValue();
                 magneticflux[3] = ((MagneticFlux)OnGetDevice("磁通计2")).GetCurrValue();
                 if (!MoveToPos(new double[] { double.NaN, double.NaN, 0, double.NaN, double.NaN, 0 }, "安全高度"))
@@ -177,20 +179,24 @@ namespace JSystem.Station
             for (int i = 0; i < 4; i++)
             {
                 string sn = SNQueue.Dequeue();
-                bool ret = false;
-                if (_retList != null && _retList.Count >= 2)
+                bool mesRet = true;
+                if (_retList != null && _retList.Count >= 1 && sn != "")
                 {
-                    ret &= ((MesSys)OnGetDevice("Mes系统")).Arrival(sn, out string msg);
+                    mesRet &= ((MesSys)OnGetDevice("Mes系统")).Arrival(sn, out string msg);
                     AddLog($"Mes入站信息：{msg}");
-                    if (ret == true)
+                    if (mesRet == true)
                     {
                         _retList[0].SetResult(magneticflux[i]);
                         _retList[1].SetResult(height[i]);
-                        ret &= ((MesSys)OnGetDevice("Mes系统")).Departure(sn, _retList, out msg);
+                        mesRet &= ((MesSys)OnGetDevice("Mes系统")).Departure(sn, _retList, out msg);
                         AddLog($"Mes出站信息：{msg}");
                     }
+                    else
+                    {
+                        UIMessageBox.ShowError($"第{i + 1}个产品{sn}入站失败：{msg}");
+                    }
                 }
-                OnSendRets(i, sn, magneticflux[i], height[i], ret);
+                OnSendRets(i, sn, magneticflux[i], height[i], mesRet);
             }
             return true;
         }
@@ -200,15 +206,18 @@ namespace JSystem.Station
             State = EStationState.RESETING;
             _retList = new List<MesResult>();
             MesResult result1 = new MesResult();
-            result1.ID = "磁通量";
+            result1.ID = "FluxTest";
             result1.UpperLimit = ParamManager.GetDoubleParam("磁通量上限");
             result1.LowerLimit = ParamManager.GetDoubleParam("磁通量下限");
             _retList.Add(result1);
-            MesResult result2 = new MesResult();
-            result1.ID = "测高";
-            result2.UpperLimit = ParamManager.GetDoubleParam("测高上限");
-            result2.LowerLimit = ParamManager.GetDoubleParam("测高下限");
-            _retList.Add(result2);
+            if (!ParamManager.GetBoolParam("禁用测高"))
+            {
+                MesResult result2 = new MesResult();
+                result1.ID = "HeightTest";
+                result2.UpperLimit = ParamManager.GetDoubleParam("测高上限");
+                result2.LowerLimit = ParamManager.GetDoubleParam("测高下限");
+                _retList.Add(result2);
+            }
             SetOut("阻挡缸4", true);
             SetOut("顶升缸", false);
             if (!GoHome(new bool[] { false, false, true, false, false, true }))

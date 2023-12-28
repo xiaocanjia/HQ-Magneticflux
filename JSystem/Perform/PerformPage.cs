@@ -130,6 +130,8 @@ namespace JSystem.Perform
         private void InitDisp()
         {
             DGV_Result.Rows.Clear();
+            DGV_Result.Columns[2].HeaderText = $"磁通量({ParamManager.GetDoubleParam("磁通量下限")}-{ParamManager.GetDoubleParam("磁通量上限")})";
+            DGV_Result.Columns[3].HeaderText = $"测高高度({ParamManager.GetDoubleParam("测高下限")}-{ParamManager.GetDoubleParam("测高上限")})";
             for (int i = 0; i < 4; i++)
             {
                 DGV_Result.Rows.Add(new object[] { i + 1, "", "", "", "" });
@@ -145,7 +147,8 @@ namespace JSystem.Perform
                 string fielPath = ParamManager.GetStringParam("数据保存路径") + DateTime.Now.ToString("yyyy-MM-dd") + ".csv";
                 if (!File.Exists(fielPath))
                 {
-                    string header = "时间,SN,结果,磁通量,高度";
+                    string header = $"时间,SN,磁通量({ParamManager.GetDoubleParam("磁通量下限")}-{ParamManager.GetDoubleParam("磁通量上限")})," +
+                        $"测高高度({ParamManager.GetDoubleParam("测高下限")}-{ParamManager.GetDoubleParam("测高上限")}),Mes上传结果,测试总结果";
                     TxtHelper.FileWrite(ParamManager.GetStringParam("数据保存路径"), header);
                 }
                 DGV_Result.Rows[idx].Cells[1].Value = sn;
@@ -155,28 +158,37 @@ namespace JSystem.Perform
                 DGV_Result.Rows[idx].Cells[5].Value = ParamManager.GetDoubleParam("测高下限");
                 DGV_Result.Rows[idx].Cells[6].Value = height;
                 DGV_Result.Rows[idx].Cells[7].Value = ParamManager.GetDoubleParam("测高下限");
-                DGV_Result.Rows[idx].Cells[8].Value = mesRet ? "OK" : "NG";
                 string dec = "OK";
-                if (magneticflux < ParamManager.GetDoubleParam("磁通量下限") || magneticflux > ParamManager.GetDoubleParam("磁通量上限") ||
-                    height < ParamManager.GetDoubleParam("高度下限") || height > ParamManager.GetDoubleParam("高度上限") || !mesRet)
-                    dec = "NG";
-                TxtHelper.FileWrite(fielPath, DateTime.Now.ToString("HH-mm-ss") + $",{sn},{dec},{magneticflux},{height}");
+                if (((MesSys)_controller.StationMgr.OnGetDevice("Mes系统")).IsEnable)
+                    DGV_Result.Rows[idx].Cells[8].Value = mesRet ? "OK" : "NG";
+                else
+                    DGV_Result.Rows[idx].Cells[8].Value = "";
+                if (ParamManager.GetBoolParam("禁用测高"))
+                {
+                    if (magneticflux < ParamManager.GetDoubleParam("磁通量下限") || magneticflux > ParamManager.GetDoubleParam("磁通量上限") || !mesRet)
+                        dec = "NG";
+                }
+                else
+                {
+                    if (magneticflux < ParamManager.GetDoubleParam("磁通量下限") || magneticflux > ParamManager.GetDoubleParam("磁通量上限") ||
+                        height < ParamManager.GetDoubleParam("高度下限") || height > ParamManager.GetDoubleParam("高度上限") || !mesRet)
+                        dec = "NG";
+                }
+                TxtHelper.FileWrite(fielPath, DateTime.Now.ToString("HH-mm-ss-ffff") + $",{sn},{magneticflux},{height},{DGV_Result.Rows[idx].Cells[8].Value}，{dec}");
                 DGV_Result.Rows[idx].DefaultCellStyle.ForeColor = dec == "NG" ? Color.Red : Color.Green;
+                DGV_Result.Rows[idx].Cells[9].Value = dec;
                 _totalCount++;
-                //mes上传
                 if (dec == "OK")
                 {
                     _controller.DeviceMgr.OnSetOut($"OK指示灯{idx + 1}", true);
                     _controller.DeviceMgr.OnSetOut($"NG指示灯{idx + 1}", false);
                     _passCount++;
-                    DGV_Result.Rows[idx].Cells[9].Value = dec;
                 }
                 else
                 {
                     _controller.DeviceMgr.OnSetOut($"OK指示灯{idx + 1}", false);
                     _controller.DeviceMgr.OnSetOut($"NG指示灯{idx + 1}", true);
                     _failCount++;
-                    DGV_Result.Rows[idx].Cells[9].Value = dec;
                 }
                 Lb_OK_Pct.Text = ((_passCount / Convert.ToDouble(_totalCount)) * 100).ToString("F1") + "%";
                 Lb_Total.Text = _totalCount.ToString();

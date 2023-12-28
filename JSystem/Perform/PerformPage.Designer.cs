@@ -56,20 +56,16 @@
             this.uiLabel2 = new Sunny.UI.UILabel();
             this.uiLabel6 = new Sunny.UI.UILabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.StatusPanel = new JSystem.Perform.StatusPanel();
-            this.runningMsgPanel = new JSystem.Perform.LogPanel();
             this.uiPanel1 = new Sunny.UI.UIPanel();
             this.uiTabControl1 = new Sunny.UI.UITabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.DGV_Result = new Sunny.UI.UIDataGridView();
+            this.StatusPanel = new JSystem.Perform.StatusPanel();
+            this.runningMsgPanel = new JSystem.Perform.LogPanel();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.磁通量上限 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uiTableLayoutPanel1.SuspendLayout();
@@ -460,26 +456,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1211, 246);
             this.tableLayoutPanel1.TabIndex = 33;
             // 
-            // StatusPanel
-            // 
-            this.StatusPanel.BackColor = System.Drawing.Color.SteelBlue;
-            this.StatusPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.StatusPanel.Location = new System.Drawing.Point(5, 0);
-            this.StatusPanel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 5);
-            this.StatusPanel.Name = "StatusPanel";
-            this.StatusPanel.Size = new System.Drawing.Size(595, 241);
-            this.StatusPanel.TabIndex = 0;
-            // 
-            // runningMsgPanel
-            // 
-            this.runningMsgPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.runningMsgPanel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.runningMsgPanel.Location = new System.Drawing.Point(609, 0);
-            this.runningMsgPanel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 5);
-            this.runningMsgPanel.Name = "runningMsgPanel";
-            this.runningMsgPanel.Size = new System.Drawing.Size(598, 241);
-            this.runningMsgPanel.TabIndex = 1;
-            // 
             // uiPanel1
             // 
             this.uiPanel1.Controls.Add(this.uiTabControl1);
@@ -550,12 +526,8 @@
             this.DGV_Result.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
-            this.Column4,
             this.Column3,
-            this.磁通量上限,
-            this.Column5,
             this.Column6,
-            this.Column7,
             this.Column8,
             this.Column9});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -596,6 +568,26 @@
             this.DGV_Result.StyleCustomMode = true;
             this.DGV_Result.TabIndex = 4;
             // 
+            // StatusPanel
+            // 
+            this.StatusPanel.BackColor = System.Drawing.Color.SteelBlue;
+            this.StatusPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StatusPanel.Location = new System.Drawing.Point(5, 0);
+            this.StatusPanel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 5);
+            this.StatusPanel.Name = "StatusPanel";
+            this.StatusPanel.Size = new System.Drawing.Size(595, 241);
+            this.StatusPanel.TabIndex = 0;
+            // 
+            // runningMsgPanel
+            // 
+            this.runningMsgPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.runningMsgPanel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.runningMsgPanel.Location = new System.Drawing.Point(609, 0);
+            this.runningMsgPanel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 5);
+            this.runningMsgPanel.Name = "runningMsgPanel";
+            this.runningMsgPanel.Size = new System.Drawing.Size(598, 241);
+            this.runningMsgPanel.TabIndex = 1;
+            // 
             // Column1
             // 
             this.Column1.HeaderText = "序号";
@@ -610,14 +602,7 @@
             this.Column2.Name = "Column2";
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column2.Width = 125;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "磁通量下限";
-            this.Column4.Name = "Column4";
-            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column4.Width = 95;
+            this.Column2.Width = 200;
             // 
             // Column3
             // 
@@ -625,20 +610,7 @@
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // 磁通量上限
-            // 
-            this.磁通量上限.HeaderText = "磁通量上限";
-            this.磁通量上限.Name = "磁通量上限";
-            this.磁通量上限.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.磁通量上限.Width = 95;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "测高下限";
-            this.Column5.Name = "Column5";
-            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column5.Width = 90;
+            this.Column3.Width = 150;
             // 
             // Column6
             // 
@@ -647,26 +619,19 @@
             this.Column6.Name = "Column6";
             this.Column6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column6.Width = 90;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "测高上限";
-            this.Column7.Name = "Column7";
-            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column7.Width = 90;
+            this.Column6.Width = 150;
             // 
             // Column8
             // 
             this.Column8.HeaderText = "MES";
             this.Column8.Name = "Column8";
-            this.Column8.Width = 55;
+            this.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Column9
             // 
             this.Column9.HeaderText = "结果";
             this.Column9.Name = "Column9";
-            this.Column9.Width = 55;
+            this.Column9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // PerformPage
             // 
@@ -724,12 +689,8 @@
         private Sunny.UI.UIButton Btn_Clear;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn 磁通量上限;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
     }

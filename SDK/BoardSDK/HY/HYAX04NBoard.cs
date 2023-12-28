@@ -263,8 +263,8 @@ namespace BoardSDK
                 byte org = (byte)(Convert.ToByte(SendCmd(buffer).Split(':')[1]) == 1 ? 0 : 1);
                 string ret = SendCmd(new byte[] { 0x4D, (byte)Math.Pow(2, axis) });
                 if (ret.Contains("None Error!!!!"))
-                    return (byte)(0 | org << 3);
-                int iRet = Convert.ToInt32(Regex.Split(ret, ": ")[1]);
+                    return (byte)(0 | (_isOn[axis] ? 32 : 0) | org << 3);
+                int iRet = Convert.ToInt32(Regex.Split(ret, ": ")[1]); //bit2：硬件正限位 bit3：硬件负限位 bit4：伺服报警 bit5：急停
                 return (byte)(((iRet & 4) >> 1) | ((iRet & 8) >> 1) | ((iRet & 16) >> 4) | ((iRet & 32) >> 1) | (_isOn[axis] ? 32 : 0) | (org << 3));
             }
             catch

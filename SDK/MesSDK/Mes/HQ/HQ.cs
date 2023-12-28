@@ -80,7 +80,7 @@ namespace MesSDK
             if (retList == null || retList.Count == 0)
                 ret = MesEnd(hMes, sn, _param.StationID, _param.DeviceID, err, strdata, ref len);
             else
-                ret = MesEnd2(hMes, sn, "", _param.StationID, _param.DeviceID, err, data.ToString(), strdata, ref len);
+                ret = MesEnd2(hMes, sn, "1", _param.StationID, _param.DeviceID, err, data.ToString(), strdata, ref len);
             msg = strdata.ToString();
             return ret == 0;
         }

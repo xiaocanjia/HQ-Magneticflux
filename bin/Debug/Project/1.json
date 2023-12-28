@@ -94,14 +94,14 @@
         "Type": 2,
         "Param": {
           "$type": "MesSDK.MesParam, MesSys",
-          "IP": null,
+          "IP": "",
           "Port": 0,
-          "Lot": null,
-          "DeviceID": null,
-          "LineID": null,
-          "StationID": null,
-          "ProductID": null,
-          "StaffID": null,
+          "Lot": "",
+          "DeviceID": "FluxHeightTest",
+          "LineID": "",
+          "StationID": "fluxtest",
+          "ProductID": "",
+          "StaffID": "",
           "Version": "V1.0.0"
         },
         "Name": "Mes系统",
@@ -195,7 +195,7 @@
                   22.4,
                   -71.796,
                   -45.0,
-                  28.4
+                  28.5
                 ]
               }
             },
@@ -210,7 +210,7 @@
                   22.4,
                   -5.0,
                   -45.0,
-                  28.4
+                  28.5
                 ]
               }
             }
@@ -280,16 +280,23 @@
       },
       {
         "$type": "JSystem.Param.BasicParam, JSystem",
-        "Name": "高度下限",
+        "Name": "测高下限",
         "Type": "DOUBLE",
         "Value": "0",
         "Right": "管理员"
       },
       {
         "$type": "JSystem.Param.BasicParam, JSystem",
-        "Name": "高度上限",
+        "Name": "测高上限",
         "Type": "DOUBLE",
-        "Value": "1",
+        "Value": "0",
+        "Right": "管理员"
+      },
+      {
+        "$type": "JSystem.Param.BasicParam, JSystem",
+        "Name": "数据保存路径",
+        "Type": "STRING",
+        "Value": "D:\\Data",
         "Right": "管理员"
       }
     ]

@@ -54,4 +54,10 @@
     <Value>0</Value>
     <Right>管理员</Right>
   </BasicParam>
+  <BasicParam>
+    <Name>数据保存路径</Name>
+    <Type>STRING</Type>
+    <Value>D:\Data</Value>
+    <Right>管理员</Right>
+  </BasicParam>
 </ArrayOfBasicParam>
