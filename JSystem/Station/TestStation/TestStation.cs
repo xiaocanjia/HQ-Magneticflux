@@ -200,10 +200,12 @@ namespace JSystem.Station
             State = EStationState.RESETING;
             _retList = new List<MesResult>();
             MesResult result1 = new MesResult();
+            result1.ID = "磁通量";
             result1.UpperLimit = ParamManager.GetDoubleParam("磁通量上限");
             result1.LowerLimit = ParamManager.GetDoubleParam("磁通量下限");
             _retList.Add(result1);
             MesResult result2 = new MesResult();
+            result1.ID = "测高";
             result2.UpperLimit = ParamManager.GetDoubleParam("测高上限");
             result2.LowerLimit = ParamManager.GetDoubleParam("测高下限");
             _retList.Add(result2);
