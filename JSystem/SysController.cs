@@ -122,7 +122,7 @@ namespace JSystem
             if (isNormal)
                 OnUpdateState(EDeviceState.UNINIT);
             else
-                OnUpdateState(EDeviceState.PAUSEALARM);
+                OnUpdateState(EDeviceState.EMERGENCY);
             return true;
         }
         
