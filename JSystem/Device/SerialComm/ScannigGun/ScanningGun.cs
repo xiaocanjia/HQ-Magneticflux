@@ -6,7 +6,9 @@ namespace JSystem.Device
 {
     public class ScanningGun : SerialComm
     {
-        public string Command = "start";
+        public string StartCommand = "start";
+
+        public string EndCommand = "end";
 
         public int MaxLength = 27;
 
@@ -24,7 +26,7 @@ namespace JSystem.Device
         public string ReadSN(int timeOut = 1000)
         {
             ClearBuffer();
-            WriteCommand(Command);
+            WriteCommand(StartCommand);
             DateTime start = DateTime.Now;
             string sn = "";
             while (true)
@@ -37,7 +39,10 @@ namespace JSystem.Device
                     return sn;
                 }
                 if (DateTime.Now.Subtract(start).TotalMilliseconds > timeOut)
+                {
+                    WriteCommand(EndCommand);
                     return "";
+                }
             }
         }
     }

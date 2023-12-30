@@ -140,8 +140,8 @@ namespace JSystem.Station
                 if (!MoveToPos(new double[] { double.NaN, double.NaN, pos[2], double.NaN, double.NaN, pos[5] }, "磁通量检测位1"))
                     return false;
                 Delay(400);
-                magneticflux[0] = ((MagneticFlux)OnGetDevice("磁通计1")).GetCurrValue();
-                magneticflux[2] = ((MagneticFlux)OnGetDevice("磁通计2")).GetCurrValue();
+                magneticflux[0] = ((MagneticFlux)OnGetDevice("磁通计1")).GetCurrValue() + ParamManager.GetDoubleParam("磁通量微调系数1");
+                magneticflux[2] = ((MagneticFlux)OnGetDevice("磁通计2")).GetCurrValue() + ParamManager.GetDoubleParam("磁通量微调系数3");
                 if (!MoveToPos(new double[] { double.NaN, double.NaN, 0, double.NaN, double.NaN, 0 }, "安全高度"))
                     return false;
             }
@@ -171,8 +171,8 @@ namespace JSystem.Station
                 if (!MoveToPos(new double[] { double.NaN, double.NaN, pos[2], double.NaN, double.NaN, pos[5] }, "磁通量检测位2"))
                     return false;
                 Delay(400);
-                magneticflux[1] = ((MagneticFlux)OnGetDevice("磁通计1")).GetCurrValue();
-                magneticflux[3] = ((MagneticFlux)OnGetDevice("磁通计2")).GetCurrValue();
+                magneticflux[1] = ((MagneticFlux)OnGetDevice("磁通计1")).GetCurrValue() + ParamManager.GetDoubleParam("磁通量微调系数2");
+                magneticflux[3] = ((MagneticFlux)OnGetDevice("磁通计2")).GetCurrValue() + ParamManager.GetDoubleParam("磁通量微调系数4");
                 if (!MoveToPos(new double[] { double.NaN, double.NaN, 0, double.NaN, double.NaN, 0 }, "安全高度"))
                     return false;
             }
@@ -187,7 +187,8 @@ namespace JSystem.Station
                     if (mesRet == true)
                     {
                         _retList[0].SetResult(magneticflux[i]);
-                        _retList[1].SetResult(height[i]);
+                        if (!ParamManager.GetBoolParam("禁用测高"))
+                            _retList[1].SetResult(height[i]);
                         mesRet &= ((MesSys)OnGetDevice("Mes系统")).Departure(sn, _retList, out msg);
                         AddLog($"Mes出站信息：{msg}");
                     }
@@ -206,14 +207,14 @@ namespace JSystem.Station
             State = EStationState.RESETING;
             _retList = new List<MesResult>();
             MesResult result1 = new MesResult();
-            result1.ID = "FluxTest";
+            result1.ID = "fluxtest1";
             result1.UpperLimit = ParamManager.GetDoubleParam("磁通量上限");
             result1.LowerLimit = ParamManager.GetDoubleParam("磁通量下限");
             _retList.Add(result1);
             if (!ParamManager.GetBoolParam("禁用测高"))
             {
                 MesResult result2 = new MesResult();
-                result1.ID = "HeightTest";
+                result1.ID = "fluxtest2";
                 result2.UpperLimit = ParamManager.GetDoubleParam("测高上限");
                 result2.LowerLimit = ParamManager.GetDoubleParam("测高下限");
                 _retList.Add(result2);

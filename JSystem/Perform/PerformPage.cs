@@ -144,25 +144,22 @@ namespace JSystem.Perform
         {
             try
             {
-                string fielPath = ParamManager.GetStringParam("数据保存路径") + DateTime.Now.ToString("yyyy-MM-dd") + ".csv";
-                if (!File.Exists(fielPath))
+                if (sn == "") return;//加入判断二维码是否为空，空不显示结果
+                string filePath = ParamManager.GetStringParam("数据保存路径") + "\\" + DateTime.Now.ToString("yyyy-MM-dd") + ".csv";
+                if (!File.Exists(filePath))
                 {
                     string header = $"时间,SN,磁通量({ParamManager.GetDoubleParam("磁通量下限")}-{ParamManager.GetDoubleParam("磁通量上限")})," +
                         $"测高高度({ParamManager.GetDoubleParam("测高下限")}-{ParamManager.GetDoubleParam("测高上限")}),Mes上传结果,测试总结果";
-                    TxtHelper.FileWrite(ParamManager.GetStringParam("数据保存路径"), header);
+                    TxtHelper.FileWrite(filePath, header);
                 }
                 DGV_Result.Rows[idx].Cells[1].Value = sn;
-                DGV_Result.Rows[idx].Cells[2].Value = ParamManager.GetDoubleParam("磁通量下限");
-                DGV_Result.Rows[idx].Cells[3].Value = magneticflux;
-                DGV_Result.Rows[idx].Cells[4].Value = ParamManager.GetDoubleParam("磁通量上限");
-                DGV_Result.Rows[idx].Cells[5].Value = ParamManager.GetDoubleParam("测高下限");
-                DGV_Result.Rows[idx].Cells[6].Value = height;
-                DGV_Result.Rows[idx].Cells[7].Value = ParamManager.GetDoubleParam("测高下限");
+                DGV_Result.Rows[idx].Cells[2].Value = magneticflux;
+                DGV_Result.Rows[idx].Cells[3].Value = height;
                 string dec = "OK";
                 if (((MesSys)_controller.StationMgr.OnGetDevice("Mes系统")).IsEnable)
-                    DGV_Result.Rows[idx].Cells[8].Value = mesRet ? "OK" : "NG";
+                    DGV_Result.Rows[idx].Cells[4].Value = mesRet ? "OK" : "NG";
                 else
-                    DGV_Result.Rows[idx].Cells[8].Value = "";
+                    DGV_Result.Rows[idx].Cells[4].Value = "";
                 if (ParamManager.GetBoolParam("禁用测高"))
                 {
                     if (magneticflux < ParamManager.GetDoubleParam("磁通量下限") || magneticflux > ParamManager.GetDoubleParam("磁通量上限") || !mesRet)
@@ -174,9 +171,9 @@ namespace JSystem.Perform
                         height < ParamManager.GetDoubleParam("高度下限") || height > ParamManager.GetDoubleParam("高度上限") || !mesRet)
                         dec = "NG";
                 }
-                TxtHelper.FileWrite(fielPath, DateTime.Now.ToString("HH-mm-ss-ffff") + $",{sn},{magneticflux},{height},{DGV_Result.Rows[idx].Cells[8].Value}，{dec}");
+                TxtHelper.FileWrite(filePath, DateTime.Now.ToString("HH-mm-ss-ffff") + $",{sn},{magneticflux},{height},{DGV_Result.Rows[idx].Cells[4].Value}，{dec}");
                 DGV_Result.Rows[idx].DefaultCellStyle.ForeColor = dec == "NG" ? Color.Red : Color.Green;
-                DGV_Result.Rows[idx].Cells[9].Value = dec;
+                DGV_Result.Rows[idx].Cells[5].Value = dec;
                 _totalCount++;
                 if (dec == "OK")
                 {

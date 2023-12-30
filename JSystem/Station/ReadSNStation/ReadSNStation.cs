@@ -43,7 +43,7 @@ namespace JSystem.Station
                     switch (Step)
                     {
                         case (int)EStationStep.进站:
-                            if (OnGetIn("进料启动按钮") && OnGetIn("皮带1感应有料1") && !OnGetIn("皮带1感应有料2"))
+                            if (OnGetIn("皮带1感应有料1") && !OnGetIn("皮带1感应有料2"))
                             {
                                 SetOut("阻挡缸1", false);
                                 SetOut("皮带1", true);
@@ -58,19 +58,12 @@ namespace JSystem.Station
                         case (int)EStationStep.扫码:
                             {
                                 Task[] taskPool = new Task[4];
-                                string[] snArr = new string[4];
                                 for (int i = 0; i < 4; i++)
                                 {
-                                    taskPool[i] = new Task((idx) =>
-                                    {
-                                        snArr[(int)idx] = ((ScanningGun)OnGetDevice($"扫码枪{(int)idx + 1}")).ReadSN();
-                                        AddLog($"产品{(int)idx + 1} SN为{snArr[(int)idx]}");
-                                    }, i);
-                                    taskPool[i].Start();
+                                    string sn = ((ScanningGun)OnGetDevice($"扫码枪{i + 1}")).ReadSN(800);
+                                    OnAddSN("测试工站", sn);
+                                    AddLog($"产品{i + 1} SN为{sn}");
                                 }
-                                Task.WaitAll(taskPool);
-                                for (int i = 0; i < 4; i++)
-                                    OnAddSN("测试工站", snArr[i]);
                                 AddLog($"等待移动产品到皮带2");
                                 JumpStep((int)EStationStep.出站);
                                 break;

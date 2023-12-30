@@ -59,6 +59,8 @@ namespace JSystem.Device
                     Parity = Parity
                 };
                 _port.DataReceived += PortDataReceived;
+                _port.RtsEnable = true;
+                _port.DtrEnable = true;
                 _port.Open();
                 return true;
             }
@@ -89,6 +91,8 @@ namespace JSystem.Device
 
         public void ClearBuffer()
         {
+            if (!IsEnable || !CheckConnection())
+                return;
             _bufferList.Clear();
             _port?.DiscardInBuffer();
         }
@@ -97,6 +101,7 @@ namespace JSystem.Device
         {
             _port?.Close();
             _port?.Dispose();
+            _bufferList.Clear();
         }
 
         public override bool CheckConnection()

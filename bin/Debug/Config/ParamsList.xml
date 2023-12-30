@@ -55,6 +55,30 @@
     <Right>管理员</Right>
   </BasicParam>
   <BasicParam>
+    <Name>磁通量微调系数1</Name>
+    <Type>DOUBLE</Type>
+    <Value>0</Value>
+    <Right>管理员</Right>
+  </BasicParam>
+  <BasicParam>
+    <Name>磁通量微调系数2</Name>
+    <Type>DOUBLE</Type>
+    <Value>0</Value>
+    <Right>管理员</Right>
+  </BasicParam>
+  <BasicParam>
+    <Name>磁通量微调系数3</Name>
+    <Type>DOUBLE</Type>
+    <Value>0</Value>
+    <Right>管理员</Right>
+  </BasicParam>
+  <BasicParam>
+    <Name>磁通量微调系数4</Name>
+    <Type>DOUBLE</Type>
+    <Value>0</Value>
+    <Right>管理员</Right>
+  </BasicParam>
+  <BasicParam>
     <Name>数据保存路径</Name>
     <Type>STRING</Type>
     <Value>D:\Data</Value>

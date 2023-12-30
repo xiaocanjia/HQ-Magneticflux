@@ -74,7 +74,7 @@ namespace MesSDK
             foreach (MesResult mRet in retList)
             {
                 if (mRet.Decision == "FAIL")
-                    err += mRet.ID;
+                    err += mRet.ID + ",";
                 data.Add(mRet.ID, mRet.Value);
             }
             if (retList == null || retList.Count == 0)

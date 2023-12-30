@@ -15,7 +15,8 @@ namespace JSystem.Device
         public override void Refresh()
         {
             base.Refresh();
-            TB_Command.Text = ((ScanningGun)_device).Command;
+            TB_Start_Command.Text = ((ScanningGun)_device).StartCommand;
+            TB_End_Command.Text = ((ScanningGun)_device).EndCommand;
             TB_Max_Length.Text = ((ScanningGun)_device).MaxLength.ToString(); ;
         }
 
@@ -42,7 +43,8 @@ namespace JSystem.Device
         {
             try
             {
-                ((ScanningGun)_device).Command = TB_Command.Text;
+                ((ScanningGun)_device).StartCommand = TB_Start_Command.Text;
+                ((ScanningGun)_device).EndCommand = TB_End_Command.Text;
                 ((ScanningGun)_device).MaxLength = Convert.ToInt32(TB_Max_Length.Text);
             }
             catch
