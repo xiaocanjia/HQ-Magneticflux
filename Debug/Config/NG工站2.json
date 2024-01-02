@@ -1,0 +1,34 @@
+{
+  "$type": "JSystem.Station.StationInfo, JSystem",
+  "AxesInfo": {
+    "$type": "JSystem.Station.StationAxis[], JSystem",
+    "$values": [
+      {
+        "$type": "JSystem.Station.StationAxis, JSystem",
+        "Name": "P",
+        "BoardName": "HY÷·ø®1",
+        "AxisIndex": 0,
+        "Index": 3,
+        "MoveVelH": 20.0,
+        "MoveVelL": 2.0,
+        "ManulVel": 20.0,
+        "MoveAcc": 20.0,
+        "MoveDcc": 20.0,
+        "Unit": "mm",
+        "HomeMode": 0,
+        "HomeDir": 0,
+        "HomeOffset": 1.0,
+        "HomeVelH": 20.0,
+        "HomeVelL": 20.0,
+        "HomeAcc": 3.0,
+        "HomeDcc": 3.0,
+        "PlusePerUnit": 1000,
+        "Accuracy": 0.01
+      }
+    ]
+  },
+  "PointsName": {
+    "$type": "System.String[], mscorlib",
+    "$values": []
+  }
+}

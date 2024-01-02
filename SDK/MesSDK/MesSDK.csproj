@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <OutputPath>..\..\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -80,9 +80,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>echo Copy libraries to $(SolutionDir)bin\Debug...
-xcopy /y $(SolutionDir)Packages\Mes\ZR\* $(SolutionDir)bin\Debug
-xcopy /y $(SolutionDir)Packages\Mes\Honor\* $(SolutionDir)bin\Debug
-xcopy /y $(SolutionDir)Packages\Mes\HQ\* $(SolutionDir)bin\Debug</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
 </Project>

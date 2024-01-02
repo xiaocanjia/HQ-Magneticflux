@@ -1,0 +1,34 @@
+{
+  "$type": "JSystem.Station.StationInfo, JSystem",
+  "AxesInfo": {
+    "$type": "JSystem.Station.StationAxis[], JSystem",
+    "$values": [
+      {
+        "$type": "JSystem.Station.StationAxis, JSystem",
+        "Name": "NG皮带",
+        "BoardName": "HY轴卡1",
+        "AxisIndex": 3,
+        "Index": 3,
+        "MoveVelH": 10.0,
+        "MoveVelL": 10.0,
+        "ManulVel": 10.0,
+        "MoveAcc": 400.0,
+        "MoveDcc": 400.0,
+        "Unit": "mm",
+        "HomeMode": 28,
+        "HomeDir": 0,
+        "HomeOffset": 1.0,
+        "HomeVelH": 30.0,
+        "HomeVelL": 5.0,
+        "HomeAcc": 50.0,
+        "HomeDcc": 50.0,
+        "PlusePerUnit": 1000,
+        "Accuracy": 0.01
+      }
+    ]
+  },
+  "PointsName": {
+    "$type": "System.String[], mscorlib",
+    "$values": []
+  }
+}

@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <OutputPath>..\..\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -83,13 +83,7 @@
     </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>echo Copy OpenGL libraries to $(SolutionDir)bin\Debug...
-xcopy /y $(SolutionDir)Packages\CamLib\Keyence\* $(SolutionDir)\bin\Debug
-xcopy /y $(SolutionDir)Packages\CamLib\LMI\* $(SolutionDir)\bin\Debug
-xcopy /y $(SolutionDir)Packages\CamLib\HIK\* $(SolutionDir)\bin\Debug
-xcopy /y $(SolutionDir)Packages\CamLib\VoNet\* $(SolutionDir)\bin\Debug
-xcopy /y $(SolutionDir)Packages\CamLib\SSZN\* $(SolutionDir)\bin\Debug
-xcopy /y $(SolutionDir)Packages\CamLib\LVM\* $(SolutionDir)\bin\Debug
-xcopy /y $(SolutionDir)Packages\CamLib\LightE\* $(SolutionDir)\bin\Debug</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
 </Project>
