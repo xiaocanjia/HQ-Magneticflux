@@ -19,6 +19,12 @@
     <Right>管理员</Right>
   </BasicParam>
   <BasicParam>
+    <Name>监控上传</Name>
+    <Type>BOOL</Type>
+    <Value>是</Value>
+    <Right>管理员</Right>
+  </BasicParam>
+  <BasicParam>
     <Name>NG皮带移动间距</Name>
     <Type>DOUBLE</Type>
     <Value>100</Value>
@@ -80,6 +86,12 @@
   </BasicParam>
   <BasicParam>
     <Name>数据保存路径</Name>
+    <Type>STRING</Type>
+    <Value>D:\Data</Value>
+    <Right>管理员</Right>
+  </BasicParam>
+  <BasicParam>
+    <Name>服务器数据保存路径</Name>
     <Type>STRING</Type>
     <Value>D:\Data</Value>
     <Right>管理员</Right>

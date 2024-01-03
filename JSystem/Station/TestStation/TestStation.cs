@@ -189,7 +189,25 @@ namespace JSystem.Station
                         _retList[0].SetResult(magneticflux[i]);
                         if (!ParamManager.GetBoolParam("禁用测高"))
                             _retList[1].SetResult(height[i]);
-                        mesRet &= ((MesSys)OnGetDevice("Mes系统")).Departure(sn, _retList, out msg);
+                        if (ParamManager.GetBoolParam("监控上传"))
+                        {
+                            if (!ParamManager.GetBoolParam("禁用测高"))
+                            {
+                                if (_retList[0].Decision == "PASS" && _retList[1].Decision == "PASS")
+                                {
+                                    mesRet &= ((MesSys)OnGetDevice("Mes系统")).Departure(sn, _retList, out msg);
+                                }
+                            }
+                            else
+                            {
+                                if (_retList[0].Decision == "PASS")
+                                {
+                                    mesRet &= ((MesSys)OnGetDevice("Mes系统")).Departure(sn, _retList, out msg);
+                                }
+                            }
+                        }
+                        else
+                            mesRet &= ((MesSys)OnGetDevice("Mes系统")).Departure(sn, _retList, out msg);
                         AddLog($"Mes出站信息：{msg}");
                     }
                     else
