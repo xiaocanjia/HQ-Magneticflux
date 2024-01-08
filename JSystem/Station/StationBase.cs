@@ -348,6 +348,7 @@ namespace JSystem.Station
         {
             try
             {
+            RETRY:
                 DateTime start = DateTime.Now;
                 while (true)
                 {
@@ -366,7 +367,7 @@ namespace JSystem.Station
                             AddLog($"{name}信号检测超时，请检查感应器是否有异常");
                             DialogResult ret = View.DispAlarm($"{name}信号检测超时，请检查感应器是否有异常");
                             if (ret == DialogResult.Retry)
-                                return false;
+                                goto RETRY;
                             else if (ret == DialogResult.Ignore)
                                 return true;
                         }
