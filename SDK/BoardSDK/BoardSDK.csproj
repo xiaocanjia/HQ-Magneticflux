@@ -64,6 +64,7 @@
     <Compile Include="Googol\Gen\LookAheadEx.cs" />
     <Compile Include="HY\HYAX04NBoard.cs" />
     <Compile Include="HY\HYIOBoard.cs" />
+    <Compile Include="HY\HYIOCan.cs" />
     <Compile Include="IBoard.cs" />
     <Compile Include="BoardFactory.cs" />
     <Compile Include="RM\RMCEP.cs" />
