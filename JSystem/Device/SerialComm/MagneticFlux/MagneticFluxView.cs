@@ -46,8 +46,15 @@ namespace JSystem.Device
         private void Btn_EncoderZeroing_Click(object sender, EventArgs e)
         {
             MagneticFlux magnetic = (MagneticFlux)_device;
-            if (!magnetic.ClearZero())
+            if (!magnetic.ZeroClear())
                 UIMessageTip.ShowError("清零失败");
+        }
+
+        private void Btn_MagneticFluxReset_Click(object sender, EventArgs e)
+        {
+            MagneticFlux magnetic = (MagneticFlux)_device;
+            if (!magnetic.Adjust())
+                UIMessageTip.ShowError("复位失败");
         }
     }
 }

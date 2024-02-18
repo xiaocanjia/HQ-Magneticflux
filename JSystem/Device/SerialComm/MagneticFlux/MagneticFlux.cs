@@ -163,23 +163,23 @@ namespace JSystem.Device
             }
         }
 
-        public bool ClearZero()
+        public bool ZeroClear()
         {
-            try
-            {
-                WriteCommand(EncoderZeroing);
-                Thread.Sleep(10);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            WriteCommand(EncoderZeroing);
+            Thread.Sleep(10);
+            return true;
         }
 
         public double GetCurrValue()
         {
             return _currValue;
+        }
+
+        public bool Adjust()
+        {
+            WriteCommand(ZeroAdjustment);
+            Thread.Sleep(10);
+            return true;
         }
     }
 }

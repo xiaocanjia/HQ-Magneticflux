@@ -61,7 +61,7 @@
     </Reference>
     <Reference Include="Ivi.Visa, Version=5.11.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Debug\Ivi.Visa.dll</HintPath>
+      <HintPath>..\Packages\Visa\Ivi.Visa.dll</HintPath>
     </Reference>
     <Reference Include="JLogging, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="Meas2D, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -82,7 +82,7 @@
     </Reference>
     <Reference Include="NationalInstruments.Visa, Version=22.5.0.49212, Culture=neutral, PublicKeyToken=2eaa5af0834e221d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Debug\NationalInstruments.Visa.dll</HintPath>
+      <HintPath>..\Packages\Visa\NationalInstruments.Visa.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

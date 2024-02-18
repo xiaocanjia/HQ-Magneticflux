@@ -47,7 +47,7 @@ namespace JSystem.Station
                             {
                                 SetOut("阻挡缸1", false);
                                 SetOut("皮带1", true);
-                                if (!GetIn("皮带1感应有料2", true, 5000))
+                                if (!GetIn("皮带1感应有料2", true,10000))
                                     break;
                                 SetOut("皮带1", false);
                                 SetOut("阻挡缸1", true);
@@ -60,7 +60,7 @@ namespace JSystem.Station
                                 Task[] taskPool = new Task[4];
                                 for (int i = 0; i < 4; i++)
                                 {
-                                    string sn = ((ScanningGun)OnGetDevice($"扫码枪{i + 1}")).ReadSN(800);
+                                    string sn = ((ScanningGun)OnGetDevice($"扫码枪{i + 1}")).ReadSN(1000);
                                     OnAddSN("测试工站", sn);
                                     AddLog($"产品{i + 1} SN为{sn}");
                                 }
@@ -76,6 +76,7 @@ namespace JSystem.Station
                                 SetOut("皮带2", true);
                                 if (!GetIn("皮带2感应有料", true, 5000))
                                     break;
+                                Delay(100);//皮带停止没有那么快，等待到位
                                 SetOut("皮带1", false);
                                 SetOut("皮带2", false);
                                 SetOut("阻挡缸2", true);

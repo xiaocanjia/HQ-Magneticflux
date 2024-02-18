@@ -42,6 +42,7 @@
             this.uiLabel6 = new Sunny.UI.UILabel();
             this.Lb_Value = new Sunny.UI.UILabel();
             this.Btn_EncoderZeroing = new Sunny.UI.UIButton();
+            this.Btn_MagneticFluxReset = new Sunny.UI.UIButton();
             this.SuspendLayout();
             // 
             // uiLabel4
@@ -253,6 +254,24 @@
             this.Btn_EncoderZeroing.Text = "清零";
             this.Btn_EncoderZeroing.Click += new System.EventHandler(this.Btn_EncoderZeroing_Click);
             // 
+            // Btn_MagneticFluxReset
+            // 
+            this.Btn_MagneticFluxReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Btn_MagneticFluxReset.FillColor = System.Drawing.Color.SteelBlue;
+            this.Btn_MagneticFluxReset.FillHoverColor = System.Drawing.Color.LightSteelBlue;
+            this.Btn_MagneticFluxReset.FillSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.Btn_MagneticFluxReset.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.Btn_MagneticFluxReset.Location = new System.Drawing.Point(286, 486);
+            this.Btn_MagneticFluxReset.MinimumSize = new System.Drawing.Size(1, 1);
+            this.Btn_MagneticFluxReset.Name = "Btn_MagneticFluxReset";
+            this.Btn_MagneticFluxReset.RectColor = System.Drawing.Color.SteelBlue;
+            this.Btn_MagneticFluxReset.Size = new System.Drawing.Size(73, 29);
+            this.Btn_MagneticFluxReset.Style = Sunny.UI.UIStyle.Custom;
+            this.Btn_MagneticFluxReset.StyleCustomMode = true;
+            this.Btn_MagneticFluxReset.TabIndex = 241;
+            this.Btn_MagneticFluxReset.Text = "复位";
+            this.Btn_MagneticFluxReset.Click += new System.EventHandler(this.Btn_MagneticFluxReset_Click);
+            // 
             // MagneticFluxView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -263,6 +282,7 @@
             this.Controls.Add(this.CB_Unit);
             this.Controls.Add(this.CB_Range);
             this.Controls.Add(this.uiLabel5);
+            this.Controls.Add(this.Btn_MagneticFluxReset);
             this.Controls.Add(this.Btn_EncoderZeroing);
             this.Controls.Add(this.Btn_SetUnit);
             this.Controls.Add(this.uiLabel4);
@@ -280,6 +300,7 @@
             this.Controls.SetChildIndex(this.uiLabel4, 0);
             this.Controls.SetChildIndex(this.Btn_SetUnit, 0);
             this.Controls.SetChildIndex(this.Btn_EncoderZeroing, 0);
+            this.Controls.SetChildIndex(this.Btn_MagneticFluxReset, 0);
             this.Controls.SetChildIndex(this.uiLabel5, 0);
             this.Controls.SetChildIndex(this.CB_Range, 0);
             this.Controls.SetChildIndex(this.CB_Unit, 0);
@@ -305,5 +326,6 @@
         private Sunny.UI.UILabel uiLabel6;
         private Sunny.UI.UILabel Lb_Value;
         private Sunny.UI.UIButton Btn_EncoderZeroing;
+        private Sunny.UI.UIButton Btn_MagneticFluxReset;
     }
 }

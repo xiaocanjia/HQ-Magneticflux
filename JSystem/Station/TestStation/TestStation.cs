@@ -65,7 +65,7 @@ namespace JSystem.Station
                         case (int)EStationStep.顶升气缸上升:
                             {
                                 SetOut("顶升缸", true);
-                                if (!GetIn("顶升缸到位", true, 3000))
+                                if (!GetIn("顶升缸到位", true, 10000))
                                     break;
                                 JumpStep((int)EStationStep.测试);
                             }
@@ -74,6 +74,8 @@ namespace JSystem.Station
                             {
                                 OnInitDisp();
                                 if (!Test()) break;
+                                ((MagneticFlux)OnGetDevice("磁通计1")).Adjust();//测试结束调零仪器以免出现仪器卡数据问题
+                                ((MagneticFlux)OnGetDevice("磁通计2")).Adjust();
                                 double[] pos = GetPos("磁通量检测位1");
                                 if (!MoveToPos(new double[] { pos[0], pos[1], double.NaN, pos[3], pos[4], double.NaN }, "磁通量检测位1", -1, true)) break;
                                 OnSetCT(DateTime.Now.Subtract(start).TotalSeconds / 4);
@@ -115,6 +117,8 @@ namespace JSystem.Station
         {
             double[] magneticflux = new double[4];
             double[] height = new double[4];
+            ((MagneticFlux)OnGetDevice("磁通计1")).ZeroClear();    //磁通量清零
+            ((MagneticFlux)OnGetDevice("磁通计2")).ZeroClear();
             if (!ParamManager.GetBoolParam("禁用测高"))
             {
                 if (!MoveToPos(GetPos("高度基准位1")))
@@ -129,11 +133,6 @@ namespace JSystem.Station
                 height[2] = mesHeight2 - refHeight2;
             }
             {
-                if (!((MagneticFlux)OnGetDevice("磁通计1")).ClearZero() || !((MagneticFlux)OnGetDevice("磁通计2")).ClearZero())//磁通量清零
-                {
-                    ((MagneticFlux)OnGetDevice("磁通计1")).ClearZero();
-                    ((MagneticFlux)OnGetDevice("磁通计2")).ClearZero();
-                }
                 double[] pos = GetPos("磁通量检测位1");
                 if (!MoveToPos(new double[] { pos[0], pos[1], double.NaN, pos[3], pos[4], double.NaN }))
                     return false;
@@ -160,11 +159,6 @@ namespace JSystem.Station
                 height[3] = mesHeight2 - refHeight2;
             }
             {
-                if (!((MagneticFlux)OnGetDevice("磁通计1")).ClearZero() || !((MagneticFlux)OnGetDevice("磁通计2")).ClearZero())//磁通量清零
-                {
-                    ((MagneticFlux)OnGetDevice("磁通计1")).ClearZero();
-                    ((MagneticFlux)OnGetDevice("磁通计2")).ClearZero();
-                }
                 double[] pos = GetPos("磁通量检测位2");
                 if (!MoveToPos(new double[] { pos[0], pos[1], double.NaN, pos[3], pos[4], double.NaN }))
                     return false;
@@ -191,20 +185,8 @@ namespace JSystem.Station
                             _retList[1].SetResult(height[i]);
                         if (ParamManager.GetBoolParam("监控上传"))
                         {
-                            if (!ParamManager.GetBoolParam("禁用测高"))
-                            {
-                                if (_retList[0].Decision == "PASS" && _retList[1].Decision == "PASS")
-                                {
-                                    mesRet &= ((MesSys)OnGetDevice("Mes系统")).Departure(sn, _retList, out msg);
-                                }
-                            }
-                            else
-                            {
-                                if (_retList[0].Decision == "PASS")
-                                {
-                                    mesRet &= ((MesSys)OnGetDevice("Mes系统")).Departure(sn, _retList, out msg);
-                                }
-                            }
+                            if (_retList.Find((r) => r.Decision == "FAIL") == null)
+                                mesRet &= ((MesSys)OnGetDevice("Mes系统")).Departure(sn, _retList, out msg);
                         }
                         else
                             mesRet &= ((MesSys)OnGetDevice("Mes系统")).Departure(sn, _retList, out msg);
@@ -222,6 +204,8 @@ namespace JSystem.Station
 
         public override bool Reset()
         {
+            ((MagneticFlux)OnGetDevice("磁通计1")).Adjust();//复位调零仪器以免出现仪器卡数据问题
+            ((MagneticFlux)OnGetDevice("磁通计2")).Adjust();
             State = EStationState.RESETING;
             _retList = new List<MesResult>();
             MesResult result1 = new MesResult();

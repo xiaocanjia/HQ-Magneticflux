@@ -23,7 +23,6 @@ namespace JSystem.Perform
         public PerformPage()
         {
             InitializeComponent();
-            CheckForIllegalCrossThreadCalls = false;
         }
 
         public void Init(SysController controller)
@@ -129,14 +128,28 @@ namespace JSystem.Perform
 
         private void InitDisp()
         {
-            DGV_Result.Rows.Clear();
-            DGV_Result.Columns[2].HeaderText = $"磁通量({ParamManager.GetDoubleParam("磁通量下限")}-{ParamManager.GetDoubleParam("磁通量上限")})";
-            DGV_Result.Columns[3].HeaderText = $"测高高度({ParamManager.GetDoubleParam("测高下限")}-{ParamManager.GetDoubleParam("测高上限")})";
-            for (int i = 0; i < 4; i++)
+            try
             {
-                DGV_Result.Rows.Add(new object[] { i + 1, "", "", "", "" });
-                _controller.DeviceMgr.OnSetOut($"OK指示灯{i + 1}", true);
-                _controller.DeviceMgr.OnSetOut($"NG指示灯{i + 1}", false);
+                if (InvokeRequired)
+                {
+                    BeginInvoke(new Action(() => InitDisp()));
+                }
+                else
+                {
+                    DGV_Result.Rows.Clear();
+                    DGV_Result.Columns[2].HeaderText = $"磁通量({ParamManager.GetDoubleParam("磁通量下限")}-{ParamManager.GetDoubleParam("磁通量上限")})";
+                    DGV_Result.Columns[3].HeaderText = $"测高高度({ParamManager.GetDoubleParam("测高下限")}-{ParamManager.GetDoubleParam("测高上限")})";
+                    for (int i = 0; i < 4; i++)
+                    {
+                        DGV_Result.Rows.Add(new object[] { i + 1, "", "", "", "" });
+                        _controller.DeviceMgr.OnSetOut($"OK指示灯{i + 1}", true);
+                        _controller.DeviceMgr.OnSetOut($"NG指示灯{i + 1}", false);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogManager.Instance.AddLog($"主页初始化异常：{ex.Message}");
             }
         }
         
