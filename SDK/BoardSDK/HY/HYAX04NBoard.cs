@@ -109,7 +109,7 @@ namespace BoardSDK
                         break;
                     case 2: //只用限位回原
                         SendCmd(new byte[] { 0x02, bAxis, bHomeVelL[0], bHomeVelL[1], bHomeVelH[0], bHomeVelH[1] });
-                        buffer = new byte[] { 0x58, bAxis, orgLogic, (byte)homeDir, 0x00, 0x00, 0x00, 0x00 };
+                        buffer = new byte[] { 0x58, bAxis, Convert.ToByte(GetCfgValue($"Axis{axis}Config", "PLMTLogic")), (byte)homeDir, 0x00, 0x00, 0x00, 0x00 };
                         break;
                     case 3: //撞到原点就停
                         buffer = new byte[] { 0x59, bAxis, 0x01, orgLogic, (byte)homeDir, bHomeVelH[0], bHomeVelH[1], 0x00, 0x00, 0x00, 0x00 };
