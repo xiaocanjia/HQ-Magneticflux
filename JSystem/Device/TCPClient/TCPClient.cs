@@ -14,7 +14,7 @@ namespace JSystem.Device
 
         protected int _maxLength = 4096;
 
-        private List<byte> _bufferList = new List<byte>();
+        public List<byte> BufferList { get; protected set; } = new List<byte>();
 
         protected Socket _socket = null;
 
@@ -25,7 +25,7 @@ namespace JSystem.Device
         public int Port = 8088;
 
         [JsonIgnore]
-        public Action<byte[]> OnDispMsg;
+        public Action<string, byte[]> OnDispMsg;
 
         public TCPClient()
         {
@@ -84,8 +84,8 @@ namespace JSystem.Device
                 int length = _socket.EndReceive(ar);
                 byte[] data = new byte[length];
                 Array.Copy(_buffer, data, length);
-                OnDispMsg?.Invoke(data);
-                _bufferList.AddRange(data);
+                OnDispMsg?.Invoke("收", data);
+                BufferList.AddRange(data);
                 //接收下一个消息(因为这是一个递归的调用，所以这样就可以一直接收消息）异步
                 _socket.BeginReceive(_buffer, 0, _buffer.Length, SocketFlags.None, new AsyncCallback(ReceiveMessage), _socket);
             }
@@ -100,17 +100,13 @@ namespace JSystem.Device
             if (!CheckConnection())
                 return false;
             _socket?.Send(data);
+            OnDispMsg?.Invoke("发", data);
             return true;
-        }
-
-        public List<byte> ReadBuffer()
-        {
-            return _bufferList;
         }
 
         public void ClearBuffer()
         {
-            _bufferList.Clear();
+            BufferList.Clear();
         }
 
         private void CallBackMethod(IAsyncResult asyncresult)

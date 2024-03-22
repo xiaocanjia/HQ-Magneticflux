@@ -251,7 +251,7 @@
             this.Lbl_HRs_Value.Name = "Lbl_HRs_Value";
             this.Lbl_HRs_Value.Size = new System.Drawing.Size(157, 25);
             this.Lbl_HRs_Value.TabIndex = 241;
-            this.Lbl_HRs_Value.Text = "0000";
+            this.Lbl_HRs_Value.Text = "00 00";
             this.Lbl_HRs_Value.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiLabel8
@@ -361,9 +361,7 @@
             // 
             this.TB_Write_HRs_Data.ButtonSymbol = 61761;
             this.TB_Write_HRs_Data.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.TB_Write_HRs_Data.DoubleValue = 1D;
             this.TB_Write_HRs_Data.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.TB_Write_HRs_Data.IntValue = 1;
             this.TB_Write_HRs_Data.Location = new System.Drawing.Point(71, 29);
             this.TB_Write_HRs_Data.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.TB_Write_HRs_Data.Maximum = 2147483647D;
@@ -373,7 +371,7 @@
             this.TB_Write_HRs_Data.Padding = new System.Windows.Forms.Padding(7);
             this.TB_Write_HRs_Data.Size = new System.Drawing.Size(257, 29);
             this.TB_Write_HRs_Data.TabIndex = 239;
-            this.TB_Write_HRs_Data.Text = "0001";
+            this.TB_Write_HRs_Data.Text = "00 01";
             this.TB_Write_HRs_Data.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uiLabel12

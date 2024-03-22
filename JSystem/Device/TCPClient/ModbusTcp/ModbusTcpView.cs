@@ -9,6 +9,7 @@ namespace JSystem.Device
         {
             InitializeComponent();
             _device = device;
+            device.OnUpdateStatus += UpdateStatus;
         }
 
         public override void Refresh()
@@ -59,6 +60,7 @@ namespace JSystem.Device
             }
             Lbl_Coils_Value.Text = "";
             byte[] data = ((ModbusTcp)_device).ReadCoils(addr, count);
+            if (data == null) return;
             foreach (byte d in data)
                 Lbl_Coils_Value.Text += d.ToString("X2");
         }
@@ -69,8 +71,8 @@ namespace JSystem.Device
             byte[] data;
             try
             {
-                addr = Convert.ToUInt16(TB_Read_Coils_Addr.Text);
-                string[] sArr = TB_Write_HRs_Data.Text.Split(' ');
+                addr = Convert.ToUInt16(TB_Write_Coils_Addr.Text);
+                string[] sArr = TB_Write_Coils_Data.Text.Split(' ');
                 data = new byte[sArr.Length];
                 for (int i = 0; i < sArr.Length; i++)
                     data[i] = Convert.ToByte(sArr[i]);
@@ -98,22 +100,23 @@ namespace JSystem.Device
                 return;
             }
             Lbl_HRs_Value.Text = "";
-            ushort[] data = ((ModbusTcp)_device).ReadHoldingRegisters(addr, count);
-            foreach (ushort d in data)
+            byte[] data = ((ModbusTcp)_device).ReadHoldingRegisters(addr, count);
+            if (data == null) return;
+            foreach (byte d in data)
                 Lbl_HRs_Value.Text += d.ToString("X2") + " ";
         }
 
         private void Btn_Write_HRs_Click(object sender, EventArgs e)
         {
             ushort addr = 0;
-            ushort[] data;
+            byte[] data;
             try
             {
-                addr = Convert.ToUInt16(TB_Read_Coils_Addr.Text);
+                addr = Convert.ToUInt16(TB_Write_HRs_Addr.Text);
                 string[] sArr = TB_Write_HRs_Data.Text.Split(' ');
-                data = new ushort[sArr.Length];
+                data = new byte[sArr.Length];
                 for (int i = 0; i < sArr.Length; i++)
-                    data[i] = Convert.ToUInt16(sArr[i]);
+                    data[i] = Convert.ToByte(sArr[i], 16);
             }
             catch
             {

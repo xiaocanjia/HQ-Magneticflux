@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 
 namespace JSystem.Device
 {
@@ -51,32 +52,41 @@ namespace JSystem.Device
         /// <param name="addr"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public bool WriteHoldingRegisters(ushort addr, ushort[] data)
+        public bool WriteHoldingRegisters(ushort addr, byte[] data)
         {
-            byte[] bAddr = BitConverter.GetBytes(addr);
-            int len = data.Length;
-            byte[] bLength = BitConverter.GetBytes(len);
-            byte[] buffer = _header.Concat(new byte[] { 0x00, (byte)(7 + len * 2), SlaveAddr, 0x10, bAddr[1], bAddr[0], bLength[1], bLength[0], (byte)(len * 2) }).ToArray();
-            for (int i = 0; i < len; i++)
+            byte[] newData = new byte[data.Length];
+            for (int i = 0; i < data.Length / 2; i++)
             {
-                byte[] bData = BitConverter.GetBytes(data[i]);
-                buffer = buffer.Concat(bData.Reverse()).ToArray();
+                newData[i * 2] = data[i * 2 + 1];
+                newData[i * 2 + 1] = data[i * 2];
             }
+            byte[] bAddr = BitConverter.GetBytes(addr);
+            byte[] bLength = BitConverter.GetBytes(data.Length / 2);
+            byte[] buffer = _header.Concat(new byte[] { 0x00, (byte)(7 + data.Length), SlaveAddr, 0x10, bAddr[1], bAddr[0], bLength[1], bLength[0], (byte)data.Length }).Concat(newData).ToArray();
             if (SendCommand(buffer) != null)
                 return true;
             return false;
         }
 
-        public ushort[] ReadHoldingRegisters(ushort addr, ushort count)
+        /// <summary>
+        /// 一个寄存器是两个字节
+        /// </summary>
+        /// <param name="addr"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public byte[] ReadHoldingRegisters(ushort addr, ushort count)
         {
             byte[] bAddr = BitConverter.GetBytes(addr);
             byte[] bLength = BitConverter.GetBytes(count);
             byte[] ret = SendCommand(_header.Concat(new byte[] { 0x00, 0x06, SlaveAddr, 0x03, bAddr[1], bAddr[0], bLength[1], bLength[0] }).ToArray());
-            if (ret == null) return null;
-            ushort[] data = new ushort[ret[8] / 2];
-            for (int i = 0; i < ret[8] / 2; i++)
-                data[i] = BitConverter.ToUInt16(new byte[] { ret[10 + i * 2], ret[9 + i * 2] }, 0);
-            return data;
+            if (ret == null || ret.Length <= 9) return null;
+            byte[] temp = new byte[count * 2];
+            for (int i = 0; i < count; i++)
+            {
+                temp[i * 2] = ret[9 + i * 2 + 1];
+                temp[i * 2 + 1] = ret[9 + i * 2];
+            }
+            return temp;
         }
 
         private byte[] SendCommand(byte[] data)
@@ -88,12 +98,14 @@ namespace JSystem.Device
                 byte retLength = 0;
                 while (true)
                 {
-                    if (retLength == 0 && ReadBuffer().Count >= 6)
-                        retLength = ReadBuffer()[5];
-                    if (ReadBuffer().Count >= 6 + retLength)
+                    Thread.Sleep(10);
+                    if (retLength == 0 && BufferList.Count >= 6)
+                        retLength = BufferList[5];
+                    if (BufferList.Count >= 6 + retLength)
                     {
-                        byte[] ret = ReadBuffer().ToArray();
+                        byte[] ret = BufferList.ToArray();
                         ClearBuffer();
+                        Thread.Sleep(10);
                         return ret;
                     }
                     if (DateTime.Now.Subtract(start).TotalMilliseconds > TimeOut)

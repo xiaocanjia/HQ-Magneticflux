@@ -37,20 +37,11 @@ namespace JSystem.Device
             if (!Btn_Connect.Selected)
             {
                 if (!_device.Connect())
-                {
                     UIMessageBox.Show("连接失败，可能被占用或者IP端口填写错误");
-                    return;
-                }
-                Btn_Connect.Selected = true;
-                TB_IP.Enabled = false;
-                TB_Port.Enabled = false;
             }
             else
             {
                 _device.DisConnect();
-                Btn_Connect.Selected = false;
-                TB_IP.Enabled = true;
-                TB_Port.Enabled = true;
             }
         }
 
@@ -69,12 +60,14 @@ namespace JSystem.Device
                     Btn_Connect.Selected = true;
                     TB_IP.Enabled = false;
                     TB_Port.Enabled = false;
+                    CB_Enabled.Enabled = false;
                 }
                 else
                 {
                     Btn_Connect.Selected = false;
                     TB_IP.Enabled = true;
                     TB_Port.Enabled = true;
+                    CB_Enabled.Enabled = true;
                 }
             }
         }
@@ -127,7 +120,6 @@ namespace JSystem.Device
                 {
                     _device.WriteData(Encoding.Default.GetBytes(TB_Send.Text));
                 }
-                DispMsg("发->" + TB_Send.Text);
             }
             catch
             {
@@ -135,11 +127,11 @@ namespace JSystem.Device
             }
         }
 
-        private void DispMsg(byte[] buffer)
+        private void DispMsg(string type, byte[] buffer)
         {
             if (InvokeRequired)
             {
-                BeginInvoke(new Action(() => { DispMsg(buffer); }));
+                BeginInvoke(new Action(() => { DispMsg(type, buffer); }));
             }
             else
             {
@@ -155,7 +147,7 @@ namespace JSystem.Device
                     {
                         msg = Encoding.Default.GetString(buffer);
                     }
-                    DispMsg("收->" + msg);
+                    DispMsg(type + "->" + msg);
                 }
                 catch
                 {
