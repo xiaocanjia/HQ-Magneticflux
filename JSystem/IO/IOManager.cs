@@ -120,7 +120,7 @@ namespace JSystem.IO
                     OnStop?.Invoke(false);
                 }
                 if (CheckDoorIsOpen())
-                    OnPause?.Invoke(true);
+                    OnPause?.Invoke(false);
             }
         }
 
