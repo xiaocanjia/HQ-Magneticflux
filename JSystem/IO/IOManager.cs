@@ -120,7 +120,10 @@ namespace JSystem.IO
                     OnStop?.Invoke(false);
                 }
                 if (CheckDoorIsOpen())
-                    OnPause?.Invoke(false);
+                {
+                    OnPause?.Invoke(true);
+                    SetOut("蜂鸣器", true);
+                }
             }
         }
 

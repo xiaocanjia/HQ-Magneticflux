@@ -35,7 +35,6 @@ namespace JSystem.Device
                 if (_bufferList.Count >= MaxLength)
                 {
                     sn = Encoding.ASCII.GetString(_bufferList.ToArray());
-                    sn = sn.Substring(0, MaxLength);
                     return sn;
                 }
                 if (DateTime.Now.Subtract(start).TotalMilliseconds > timeOut)

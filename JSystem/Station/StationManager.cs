@@ -95,6 +95,11 @@ namespace JSystem.Station
         {
             try
             {
+                if (_state == EStationState.PAUSE || _state == EStationState.RUNNING)
+                {
+                    LogManager.Instance.AddLog("请先停止运行");
+                    return false;
+                }
                 if (StationList == null || StationList.Count == 0)
                     return false;
                 LogManager.Instance.AddLog($"开始复位");

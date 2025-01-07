@@ -79,6 +79,7 @@ namespace JSystem.Perform
                         break;
                     case EDeviceState.PAUSEALARM:
                         StatusPanel.UpdateState(state, 0, 2, 0, 1);
+                        Btn_Start.BringToFront();
                         Btn_Reset.Enabled = false;
                         break;
                     case EDeviceState.EMERGENCY:
